@@ -1,0 +1,99 @@
+<!-- @dsCard group="Screens 03 Admin" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>All bookings — admin web</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Inter+Tight:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1F2328;background:#F7F6F3;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+a{color:#1F2328;text-decoration:none}
+button,select{font-family:inherit;transition:border-color .14s,box-shadow .14s,background-color .14s}
+button:focus-visible,select:focus-visible,a:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(194,65,12,.35)}
+th{font-size:12px;font-weight:600;color:#5B616B;text-align:left;padding:12px 16px;border-bottom:1px solid #E3E1DC;background:#FFFFFF}
+td{font-size:14px;padding:13px 16px;border-bottom:1px solid #EFEDE8}
+label{font-size:12px;font-weight:600}
+</style>
+</helmet>
+<div style="width: 1440px; height: 900px; box-sizing: border-box; display: flex; flex-direction: column; background: #F7F6F3; overflow: hidden;">
+  <nav aria-label="Main" style="display: flex; align-items: center; gap: 28px; height: 60px; flex-shrink: 0; padding: 0 64px; background: #FFFFFF; border-bottom: 1px solid #E3E1DC;">
+    <span style="font-family: 'Inter Tight', sans-serif; font-size: 17px; font-weight: 700;">Rooms</span>
+    <div style="display: flex; gap: 4px; height: 100%;">
+      <a href="#" style="display: flex; align-items: center; padding: 0 12px; font-size: 14px; font-weight: 500; color: #5B616B;">Find a room</a>
+      <a href="#" style="display: flex; align-items: center; padding: 0 12px; font-size: 14px; font-weight: 500; color: #5B616B;">My bookings</a>
+      <span style="width: 1px; margin: 18px 8px; background: #E3E1DC;"></span>
+      <a href="#" aria-current="page" style="display: flex; align-items: center; padding: 0 12px; font-size: 14px; font-weight: 600; box-shadow: inset 0 -2px 0 #C2410C;">All bookings</a>
+      <a href="#" style="display: flex; align-items: center; padding: 0 12px; font-size: 14px; font-weight: 500; color: #5B616B;">Review</a>
+      <a href="#" style="display: flex; align-items: center; padding: 0 12px; font-size: 14px; font-weight: 500; color: #5B616B;">Rooms</a>
+      <a href="#" style="display: flex; align-items: center; padding: 0 12px; font-size: 14px; font-weight: 500; color: #5B616B;">People</a>
+      <a href="#" style="display: flex; align-items: center; padding: 0 12px; font-size: 14px; font-weight: 500; color: #5B616B;">Import</a>
+    </div>
+    <div style="flex-grow: 1;"></div>
+    <button type="button" style="display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 10px 0 6px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 999px; font-size: 14px; font-weight: 500; color: #1F2328;"><span style="width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; background: #1F2328; color: #FFFFFF; border-radius: 999px; font-size: 12px; font-weight: 600;">MK</span>Marko Kovač · Admin<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B616B" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"></path></svg></button>
+  </nav>
+
+  <div style="flex-grow: 1; display: flex; min-height: 0;">
+    <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 20px; padding: 32px 32px 32px 64px; min-width: 0;">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between;">
+        <div style="display: flex; flex-direction: column; gap: 4px;"><h1 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 29px; font-weight: 700;">All bookings</h1><span style="font-size: 14px; color: #5B616B;">This week · Mon 5 – Fri 9 October · 23 bookings</span></div>
+        <button type="button" style="height: 40px; padding: 0 18px; background: #C2410C; color: #FFFFFF; border: 0; border-radius: 6px; font-size: 14px; font-weight: 600;">Book for someone</button>
+      </div>
+      <div style="display: flex; gap: 12px; align-items: flex-end;">
+        <div style="display: flex; flex-direction: column; gap: 6px;"><label for="f-room">Room</label><select id="f-room" style="height: 36px; width: 150px; padding: 0 10px; background: #FFFFFF; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 14px;"><option>All rooms</option></select></div>
+        <div style="display: flex; flex-direction: column; gap: 6px;"><label for="f-person">Person</label><select id="f-person" style="height: 36px; width: 190px; padding: 0 10px; background: #FFFFFF; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 14px;"><option>Everyone</option></select></div>
+        <div style="display: flex; flex-direction: column; gap: 6px;"><label for="f-status">Status</label><select id="f-status" style="height: 36px; width: 160px; padding: 0 10px; background: #FFFFFF; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 14px;"><option>Any status</option></select></div>
+        <div style="display: flex; flex-direction: column; gap: 6px;"><label for="f-week">Week</label><select id="f-week" style="height: 36px; width: 180px; padding: 0 10px; background: #FFFFFF; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 14px;"><option>5 – 9 October</option></select></div>
+      </div>
+      <div style="flex-grow: 1; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px; overflow: hidden;">
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead><tr><th>Date</th><th>Time</th><th>Room</th><th>Person</th><th>People</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Tue 6 Oct</td><td>09:00–10:00</td><td>Board</td><td>Ivan Petrović</td><td>9</td><td><span style="display: inline-flex; height: 24px; align-items: center; padding: 0 10px; background: #EFEDE8; border-radius: 999px; font-size: 12px; font-weight: 600;">Done</span></td></tr>
+            <tr><td>Tue 6 Oct</td><td>10:00–11:30</td><td>Board</td><td>Sara Hodžić</td><td>10</td><td><span style="display: inline-flex; height: 24px; align-items: center; padding: 0 10px; background: #FEF3C7; color: #92400E; border-radius: 999px; font-size: 12px; font-weight: 600;">No-show</span></td></tr>
+            <tr style="background: #FFF1EA; box-shadow: inset 3px 0 0 #C2410C;"><td>Tue 6 Oct</td><td>10:00–11:00</td><td>Team</td><td>Tomas Berg</td><td>5</td><td><span style="display: inline-flex; height: 24px; align-items: center; padding: 0 10px; background: #E7F5EC; color: #166534; border-radius: 999px; font-size: 12px; font-weight: 600;">Checked in</span></td></tr>
+            <tr><td>Tue 6 Oct</td><td>12:00–13:00</td><td>Board</td><td>Petra Zorić</td><td>7</td><td><span style="display: inline-flex; height: 24px; align-items: center; padding: 0 10px; border: 1.5px solid #1F2328; border-radius: 999px; font-size: 12px; font-weight: 600;">Confirmed</span></td></tr>
+            <tr><td>Tue 6 Oct</td><td>14:00–15:30</td><td>Team</td><td>Lena Novak</td><td>4</td><td><span style="display: inline-flex; height: 24px; align-items: center; padding: 0 10px; border: 1.5px solid #1F2328; border-radius: 999px; font-size: 12px; font-weight: 600;">Confirmed</span></td></tr>
+            <tr><td>Tue 6 Oct</td><td>16:00–18:00</td><td>Board</td><td>Nina Horvat</td><td>12</td><td><span style="display: inline-flex; height: 24px; align-items: center; padding: 0 10px; border: 1.5px solid #1F2328; border-radius: 999px; font-size: 12px; font-weight: 600;">Confirmed</span></td></tr>
+            <tr><td>Wed 7 Oct</td><td>09:00–09:30</td><td>Focus</td><td>Ivan Petrović</td><td>2</td><td><span style="display: inline-flex; gap: 6px;"><span style="display: inline-flex; height: 24px; align-items: center; padding: 0 10px; background: #F3F4F6; color: #4B5563; border-radius: 999px; font-size: 12px; font-weight: 600; text-decoration: line-through;">Cancelled</span><span style="display: inline-flex; height: 24px; align-items: center; padding: 0 8px; border: 1.5px solid #B45309; color: #92400E; border-radius: 999px; font-size: 12px; font-weight: 600;">Late</span></span></td></tr>
+            <tr><td>Wed 7 Oct</td><td>09:00–10:00</td><td>Board</td><td>Lena Novak</td><td>10</td><td><span style="display: inline-flex; height: 24px; align-items: center; padding: 0 10px; border: 1.5px solid #1F2328; border-radius: 999px; font-size: 12px; font-weight: 600;">Confirmed</span></td></tr>
+            <tr><td>Thu 8 Oct</td><td>11:00–12:00</td><td>Old Room</td><td>Amila Delić</td><td>3</td><td><span style="display: inline-flex; height: 24px; align-items: center; padding: 0 10px; background: #F3F4F6; color: #4B5563; border-radius: 999px; font-size: 12px; font-weight: 600;">Cancelled by admin</span></td></tr>
+            <tr><td>Fri 9 Oct</td><td>13:30–15:00</td><td>Team</td><td>Amila Delić</td><td>6</td><td><span style="display: inline-flex; height: 24px; align-items: center; padding: 0 10px; border: 1.5px solid #1F2328; border-radius: 999px; font-size: 12px; font-weight: 600;">Confirmed</span></td></tr>
+          </tbody>
+        </table>
+        <div style="display: flex; justify-content: space-between; padding: 12px 16px; font-size: 12px; color: #5B616B;"><span>Showing 10 of 23</span><span>Sorted by date and time</span></div>
+      </div>
+    </div>
+
+    <aside aria-label="Booking details" style="width: 400px; flex-shrink: 0; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px; padding: 32px 28px; background: #FFFFFF; border-left: 1px solid #E3E1DC; box-shadow: -16px 0 48px rgba(31,35,40,.10);">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;"><div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-size: 12px; color: #5B616B;">Booking</span><h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 20px; font-weight: 600;">Team · 10:00–11:00</h2></div><button type="button" aria-label="Close details" style="width: 32px; height: 32px; background: transparent; border: 0; font-size: 18px; color: #5B616B;">×</button></div>
+      <dl style="margin: 0; display: grid; grid-template-columns: 110px 1fr; gap: 10px 12px; font-size: 14px;">
+        <dt style="color: #5B616B;">Person</dt><dd style="margin: 0;">Tomas Berg</dd>
+        <dt style="color: #5B616B;">Date</dt><dd style="margin: 0;">Tuesday 6 October 2026</dd>
+        <dt style="color: #5B616B;">People</dt><dd style="margin: 0;">5 of 6</dd>
+        <dt style="color: #5B616B;">Status</dt><dd style="margin: 0;">Checked in at 09:54</dd>
+        <dt style="color: #5B616B;">Booked by</dt><dd style="margin: 0;">Marko Kovač for Tomas · counts toward Tomas's 3</dd>
+      </dl>
+      <div style="display: flex; flex-direction: column; gap: 8px; padding-top: 14px; border-top: 1px solid #EFEDE8;">
+        <span style="font-size: 12px; font-weight: 600; color: #5B616B;">History</span>
+        <span style="font-size: 12px;">Fri 2 Oct 16:12 · Created by Marko Kovač</span>
+        <span style="font-size: 12px;">Mon 5 Oct 09:03 · Time changed 09:30 → 10:00 by Tomas Berg</span>
+        <span style="font-size: 12px;">Tue 6 Oct 09:54 · Checked in by Tomas Berg</span>
+      </div>
+      <div style="flex-grow: 1;"></div>
+      <button type="button" disabled style="height: 40px; background: #EFEDE8; color: #6B7079; border: 0; border-radius: 6px; font-size: 14px; font-weight: 600;">Can't cancel — meeting has started</button>
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

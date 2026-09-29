@@ -1,0 +1,207 @@
+<!-- @dsCard group="Screens 04 Prototype" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Clickable prototype — pick, find, book, my bookings</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Inter+Tight:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1F2328;background:#EFEDE8;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+::selection{background:rgba(194,65,12,.18)}
+button{font-family:inherit;cursor:pointer;transition:border-color .14s,box-shadow .14s,background-color .14s}
+button:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(194,65,12,.35)}
+@keyframes drawerIn{from{transform:translateX(24px);opacity:0}to{transform:none;opacity:1}}
+@keyframes sheetIn{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
+@keyframes toastIn{from{transform:translateY(8px);opacity:0}to{transform:none;opacity:1}}
+@keyframes backdropIn{from{opacity:0}to{opacity:1}}
+</style>
+</helmet>
+<div style="width: 1440px; height: 960px; box-sizing: border-box; display: flex; flex-direction: column; background: #EFEDE8;">
+  <div style="display: flex; align-items: center; gap: 16px; height: 56px; padding: 0 24px; flex-shrink: 0;">
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B;">Prototype</span>
+    <div role="group" aria-label="Device" style="display: inline-flex; padding: 3px; background: #FFFFFF; border-radius: 999px; gap: 2px; border: 1px solid #E3E1DC;">
+      <button type="button" aria-pressed="{{isWeb}}" onClick="{{toWeb}}" style="height: 30px; padding: 0 14px; background: {{webBg}}; color: {{webFg}}; border: 0; border-radius: 999px; font-size: 13px; font-weight: 600;">Web</button>
+      <button type="button" aria-pressed="{{isMobile}}" onClick="{{toMobile}}" style="height: 30px; padding: 0 14px; background: {{mobBg}}; color: {{mobFg}}; border: 0; border-radius: 999px; font-size: 13px; font-weight: 600;">Mobile</button>
+    </div>
+    <span style="font-size: 12px; color: #5B616B;">Pick Lena → book Board 10:45 → see it in My bookings. Tue 6 Oct, now 10:40.</span>
+    <div style="flex-grow: 1;"></div>
+    <button type="button" onClick="{{reset}}" style="height: 30px; padding: 0 12px; background: transparent; border: 0; font-size: 13px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; color: #1F2328;">Restart</button>
+  </div>
+
+  <div style="flex-grow: 1; display: flex; justify-content: center; align-items: flex-start; padding: 0 24px 24px;">
+    <div style="position: relative; width: {{frameW}}; height: {{frameH}}; background: #F7F6F3; border-radius: 12px; box-shadow: 0 6px 20px rgba(31,35,40,.12); overflow: hidden; display: flex; flex-direction: column;">
+
+      <sc-if value="{{showNav}}" hint-placeholder-val="{{false}}">
+        <sc-if value="{{isWeb}}" hint-placeholder-val="{{true}}">
+          <nav aria-label="Main" style="display: flex; align-items: center; gap: 24px; height: 56px; flex-shrink: 0; padding: 0 32px; background: #FFFFFF; border-bottom: 1px solid #E3E1DC;">
+            <span style="font-family: 'Inter Tight', sans-serif; font-size: 17px; font-weight: 700;">Rooms</span>
+            <button type="button" onClick="{{toFind}}" style="height: 56px; padding: 0 12px; background: transparent; border: 0; font-size: 14px; font-weight: 600; color: {{findTabFg}}; box-shadow: {{findTabLine}};">Find a room</button>
+            <button type="button" onClick="{{toMine}}" style="height: 56px; padding: 0 12px; background: transparent; border: 0; font-size: 14px; font-weight: 600; color: {{mineTabFg}}; box-shadow: {{mineTabLine}};">My bookings · {{count}}</button>
+            <div style="flex-grow: 1;"></div>
+            <button type="button" onClick="{{toPick}}" style="height: 38px; padding: 0 14px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 999px; font-size: 14px; font-weight: 500; color: #1F2328;">Lena Novak · Switch</button>
+          </nav>
+        </sc-if>
+      </sc-if>
+
+      <div style="position: relative; flex-grow: 1; overflow: hidden;">
+
+        <sc-if value="{{onPick}}" hint-placeholder-val="{{true}}">
+          <div style="display: flex; flex-direction: column; gap: 16px; max-width: 520px; margin: 0 auto; padding: 64px 24px;">
+            <span style="font-family: 'Inter Tight', sans-serif; font-size: 17px; font-weight: 700;">Rooms</span>
+            <h1 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 35px; font-weight: 700;">Who's booking?</h1>
+            <p style="margin: 0; font-size: 14px; color: #5B616B;">There's no sign-in during the pilot. Pick your name.</p>
+            <div style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px; overflow: hidden;">
+              <sc-for list="{{people}}" as="p" hint-placeholder-count="5">
+                <button type="button" onClick="{{p.pick}}" style="display: flex; align-items: center; gap: 12px; height: 56px; padding: 0 18px; background: #FFFFFF; border: 0; border-bottom: 1px solid #EFEDE8; text-align: left; font-size: 15px; font-weight: 600; color: #1F2328;"><span style="width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; background: #EFEDE8; border-radius: 999px; font-size: 12px;">{{p.initials}}</span><span style="flex-grow: 1;">{{p.name}}</span><span style="font-size: 12px; color: #5B616B;">{{p.role}}</span></button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{onFindWeb}}" hint-placeholder-val="{{false}}">
+          <div style="display: flex; flex-direction: column; gap: 20px; padding: 32px;">
+            <h1 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 29px; font-weight: 700;">Tuesday 6 October</h1>
+            <div style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px; overflow: hidden;">
+              <div style="display: flex; height: 36px; border-bottom: 1px solid #E3E1DC; font-size: 12px; color: #5B616B;"><div style="width: 180px; padding: 10px 16px;">Room</div><div style="position: relative; width: 1056px;"><span style="position: absolute; left: 4px; top: 10px;">08:00</span><span style="position: absolute; left: 180px; top: 10px;">10:00</span><span style="position: absolute; left: 356px; top: 10px;">12:00</span><span style="position: absolute; left: 532px; top: 10px;">14:00</span><span style="position: absolute; left: 708px; top: 10px;">16:00</span><span style="position: absolute; left: 884px; top: 10px;">18:00</span></div></div>
+              <div style="position: relative;">
+                <div style="position: absolute; left: 180px; top: 0; width: 235px; height: 216px; background: repeating-linear-gradient(135deg, rgba(239,237,232,.9) 0, rgba(239,237,232,.9) 4px, rgba(247,246,243,.6) 4px, rgba(247,246,243,.6) 10px);"></div>
+                <div style="display: flex; height: 72px; border-bottom: 1px solid #EFEDE8;"><div style="width: 180px; padding: 16px; display: flex; flex-direction: column;"><span style="font-size: 14px; font-weight: 600;">Focus</span><span style="font-size: 12px; color: #5B616B;">Fits 2</span></div><div style="position: relative; width: 1056px;"><div style="position: absolute; left: 352px; top: 14px; width: 88px; height: 44px; box-sizing: border-box; padding: 6px 8px; background: #EFEDE8; border: 1px solid #D6D3CC; border-radius: 8px; font-size: 12px; font-weight: 600;">Booked</div></div></div>
+                <div style="display: flex; height: 72px; border-bottom: 1px solid #EFEDE8;"><div style="width: 180px; padding: 16px; display: flex; flex-direction: column;"><span style="font-size: 14px; font-weight: 600;">Team</span><span style="font-size: 12px; color: #5B616B;">Fits 6</span></div><div style="position: relative; width: 1056px;"><div style="position: absolute; left: 528px; top: 14px; width: 132px; height: 44px; box-sizing: border-box; padding: 4px 8px; background: #FFFFFF; border: 1.5px solid #1F2328; border-radius: 8px; font-size: 12px;"><span style="display: block; font-weight: 600;">Your booking</span>14:00–15:30</div></div></div>
+                <div style="display: flex; height: 72px;"><div style="width: 180px; padding: 16px; display: flex; flex-direction: column;"><span style="font-size: 14px; font-weight: 600;">Board</span><span style="font-size: 12px; color: #5B616B;">Fits 12 · free now</span></div><div style="position: relative; width: 1056px;">
+                  <div style="position: absolute; left: 352px; top: 14px; width: 88px; height: 44px; box-sizing: border-box; padding: 6px 8px; background: #EFEDE8; border: 1px solid #D6D3CC; border-radius: 8px; font-size: 12px; font-weight: 600;">Booked</div>
+                  <sc-if value="{{notBooked}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{openBook}}" style="position: absolute; left: 242px; top: 10px; width: 110px; height: 52px; box-sizing: border-box; padding: 4px 8px; background: #FFFFFF; border: 1.5px dashed #C2410C; border-radius: 8px; font-size: 12px; text-align: left; color: #9A3412;"><span style="display: block; font-weight: 600;">+ Book from 10:45</span>Click to book</button></sc-if>
+                  <sc-if value="{{booked}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 242px; top: 14px; width: 88px; height: 44px; box-sizing: border-box; padding: 4px 8px; background: #FFFFFF; border: 1.5px solid #1F2328; border-radius: 8px; font-size: 12px;"><span style="display: block; font-weight: 600;">Yours</span>10:45–11:45</div></sc-if>
+                </div></div>
+                <div style="position: absolute; left: 414px; top: 0; width: 2px; height: 216px; background: #C2410C;"></div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{onFindMobile}}" hint-placeholder-val="{{false}}">
+          <div style="display: flex; flex-direction: column; gap: 10px; padding: 24px 20px;">
+            <h1 style="margin: 0 0 6px; font-family: 'Inter Tight', sans-serif; font-size: 20px; font-weight: 700; text-align: center;">Tue 6 October · Board</h1>
+            <div style="display: flex; align-items: center; height: 48px; padding: 0 14px; background: repeating-linear-gradient(135deg, #EFEDE8 0, #EFEDE8 4px, #F7F6F3 4px, #F7F6F3 10px); border-radius: 8px; font-size: 12px; color: #5B616B;">10:00 · Past</div>
+            <sc-if value="{{notBooked}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{openBook}}" style="display: flex; align-items: center; justify-content: space-between; height: 64px; padding: 0 16px; background: #FFFFFF; border: 1.5px dashed #C2410C; border-radius: 8px; font-size: 16px; font-weight: 600; color: #1F2328;">Free 10:45–12:00<span style="font-size: 14px; color: #C2410C;">Book</span></button></sc-if>
+            <sc-if value="{{booked}}" hint-placeholder-val="{{false}}"><div style="display: flex; align-items: center; height: 56px; padding: 0 16px; background: #FFFFFF; border: 1.5px solid #1F2328; border-radius: 8px; font-size: 16px; font-weight: 600;">Yours · 10:45–11:45</div></sc-if>
+            <div style="display: flex; align-items: center; height: 48px; padding: 0 14px; background: #EFEDE8; border: 1px solid #D6D3CC; border-radius: 8px; font-size: 14px; font-weight: 600;">Booked · 12:00–13:00</div>
+            <div style="display: flex; align-items: center; height: 56px; padding: 0 16px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 8px; font-size: 16px; font-weight: 600;">Free 13:00–16:00</div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{onMine}}" hint-placeholder-val="{{false}}">
+          <div style="display: flex; flex-direction: column; gap: 14px; padding: {{pad}};">
+            <h1 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 29px; font-weight: 700;">My bookings</h1>
+            <span style="font-size: 14px; color: #5B616B;">{{count}} of 3 upcoming bookings used</span>
+            <div style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px;">
+              <sc-if value="{{booked}}" hint-placeholder-val="{{false}}"><div style="display: flex; flex-direction: column; gap: 2px; padding: 16px 20px; border-bottom: 1px solid #EFEDE8; background: #FFF1EA;"><span style="font-size: 16px; font-weight: 600;">Today · 10:45–11:45 · Board</span><span style="font-size: 12px; color: #5B616B;">8 people · check in from 10:35 to 11:00</span></div></sc-if>
+              <div style="display: flex; flex-direction: column; gap: 2px; padding: 16px 20px; border-bottom: 1px solid #EFEDE8;"><span style="font-size: 16px; font-weight: 600;">Today · 14:00–15:30 · Team</span><span style="font-size: 12px; color: #5B616B;">4 people · check-in opens 13:50</span></div>
+              <div style="display: flex; flex-direction: column; gap: 2px; padding: 16px 20px;"><span style="font-size: 16px; font-weight: 600;">Wed 7 Oct · 09:00–10:00 · Board</span><span style="font-size: 12px; color: #5B616B;">10 people · booked by Marko Kovač</span></div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{drawerWeb}}" hint-placeholder-val="{{false}}">
+          <div style="position: absolute; inset: 0; background: rgba(31,35,40,.32); animation: backdropIn .16s ease-out;"></div>
+          <aside role="dialog" aria-modal="true" aria-label="Book Board" style="position: absolute; top: 0; right: 0; bottom: 0; width: 420px; box-sizing: border-box; padding: 28px; display: flex; flex-direction: column; gap: 16px; background: #FFFFFF; box-shadow: -16px 0 48px rgba(31,35,40,.20); animation: drawerIn .18s ease-out;">
+            <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 24px; font-weight: 600;">Book Board</h2>
+            <span style="font-size: 14px;">Tuesday 6 October · 10:45–11:45 · 8 people</span>
+            <span style="font-size: 12px; line-height: 1.5; color: #5B616B;">Free — the 10:00 booking was released as a no-show. This will be your 3rd of 3 upcoming bookings.</span>
+            <div style="flex-grow: 1;"></div>
+            <button type="button" onClick="{{confirm}}" style="height: 44px; background: #C2410C; color: #FFFFFF; border: 0; border-radius: 6px; font-size: 14px; font-weight: 600;">Book room</button>
+            <button type="button" onClick="{{closeBook}}" style="height: 40px; background: #FFFFFF; color: #1F2328; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 14px; font-weight: 600;">Cancel</button>
+          </aside>
+        </sc-if>
+
+        <sc-if value="{{drawerMobile}}" hint-placeholder-val="{{false}}">
+          <div style="position: absolute; inset: 0; background: rgba(31,35,40,.32); animation: backdropIn .16s ease-out;"></div>
+          <section role="dialog" aria-modal="true" aria-label="Book Board" style="position: absolute; left: 0; right: 0; bottom: 0; box-sizing: border-box; padding: 16px 20px 24px; display: flex; flex-direction: column; gap: 12px; background: #FFFFFF; border-radius: 16px 16px 0 0; box-shadow: 0 -16px 48px rgba(31,35,40,.20); animation: sheetIn .18s ease-out;">
+            <div style="align-self: center; width: 40px; height: 4px; border-radius: 999px; background: #D6D3CC;"></div>
+            <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 20px; font-weight: 600;">Book Board</h2>
+            <span style="font-size: 14px;">Today · 10:45–11:45 · 8 people</span>
+            <button type="button" onClick="{{confirm}}" style="height: 48px; background: #C2410C; color: #FFFFFF; border: 0; border-radius: 6px; font-size: 16px; font-weight: 600;">Book room</button>
+            <button type="button" onClick="{{closeBook}}" style="height: 44px; background: transparent; color: #1F2328; border: 0; font-size: 14px; font-weight: 600;">Cancel</button>
+          </section>
+        </sc-if>
+
+        <sc-if value="{{toast}}" hint-placeholder-val="{{false}}">
+          <div role="status" style="position: absolute; left: 50%; bottom: 24px; transform: translateX(-50%); display: flex; gap: 10px; align-items: center; padding: 12px 16px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 8px; box-shadow: 0 6px 20px rgba(31,35,40,.12); animation: toastIn .16s ease-out; white-space: nowrap;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#166534" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg>
+            <span style="font-size: 14px; font-weight: 600;">Booked Board, 10:45–11:45</span>
+            <button type="button" onClick="{{toMine}}" style="height: 30px; padding: 0 8px; background: transparent; border: 0; font-size: 13px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; color: #1F2328;">View</button>
+          </div>
+        </sc-if>
+      </div>
+
+      <sc-if value="{{showTabs}}" hint-placeholder-val="{{false}}">
+        <nav aria-label="Main" style="display: flex; height: 64px; flex-shrink: 0; background: #FFFFFF; border-top: 1px solid #E3E1DC;">
+          <button type="button" onClick="{{toFind}}" style="flex-grow: 1; background: transparent; border: 0; font-size: 12px; font-weight: 600; color: {{findTabFg}};">Find</button>
+          <button type="button" onClick="{{toMine}}" style="flex-grow: 1; background: transparent; border: 0; font-size: 12px; font-weight: 600; color: {{mineTabFg}};">My bookings · {{count}}</button>
+        </nav>
+      </sc-if>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":960}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { device: 'web', screen: 'pick', drawer: false, booked: false, toast: false };
+  }
+  renderVals() {
+    const s = this.state;
+    const web = s.device === 'web';
+    const go = (screen) => () => this.setState({ screen, drawer: false, toast: false });
+    const people = [
+      { name: 'Lena Novak', initials: 'LN', role: '' },
+      { name: 'Marko Kovač', initials: 'MK', role: 'Admin' },
+      { name: 'Sara Hodžić', initials: 'SH', role: '' },
+      { name: 'Tomas Berg', initials: 'TB', role: '' }
+    ].map((p) => ({ ...p, pick: go('find') }));
+    const active = '#1F2328', idle = '#5B616B', accent = '#C2410C';
+    return {
+      isWeb: web,
+      isMobile: !web,
+      webBg: web ? '#1F2328' : 'transparent', webFg: web ? '#FFFFFF' : '#5B616B',
+      mobBg: web ? 'transparent' : '#1F2328', mobFg: web ? '#5B616B' : '#FFFFFF',
+      frameW: web ? '1392px' : '390px',
+      frameH: web ? '856px' : '844px',
+      pad: web ? '32px' : '24px 20px',
+      toWeb: () => this.setState({ device: 'web' }),
+      toMobile: () => this.setState({ device: 'mobile' }),
+      reset: () => this.setState({ screen: 'pick', drawer: false, booked: false, toast: false }),
+      people,
+      onPick: s.screen === 'pick',
+      onFindWeb: s.screen === 'find' && web,
+      onFindMobile: s.screen === 'find' && !web,
+      onMine: s.screen === 'mine',
+      showNav: s.screen !== 'pick',
+      showTabs: s.screen !== 'pick' && !web,
+      findTabFg: s.screen === 'find' ? (web ? active : accent) : idle,
+      mineTabFg: s.screen === 'mine' ? (web ? active : accent) : idle,
+      findTabLine: s.screen === 'find' ? 'inset 0 -2px 0 #C2410C' : 'none',
+      mineTabLine: s.screen === 'mine' ? 'inset 0 -2px 0 #C2410C' : 'none',
+      booked: s.booked,
+      notBooked: !s.booked,
+      count: s.booked ? 3 : 2,
+      drawerWeb: s.drawer && web,
+      drawerMobile: s.drawer && !web,
+      toast: s.toast,
+      openBook: () => this.setState({ drawer: true }),
+      closeBook: () => this.setState({ drawer: false }),
+      confirm: () => this.setState({ drawer: false, booked: true, toast: true }),
+      toFind: go('find'),
+      toMine: go('mine'),
+      toPick: go('pick')
+    };
+  }
+}
+</script>
+</body>
+</html>

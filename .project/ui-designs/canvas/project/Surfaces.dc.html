@@ -1,0 +1,133 @@
+<!-- @dsCard group="Surfaces" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Surfaces — timeline board, table, drawer, states</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Inter+Tight:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1F2328;background:#F7F6F3;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+::selection{background:rgba(194,65,12,.18)}
+button:focus-visible,a:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(194,65,12,.35)}
+th{font-size:12px;font-weight:600;color:#5B616B;text-align:left;padding:10px 12px;border-bottom:1px solid #E3E1DC}
+td{font-size:14px;padding:12px;border-bottom:1px solid #EFEDE8}
+@keyframes pulse{0%{opacity:.55}50%{opacity:1}100%{opacity:.55}}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1480px; box-sizing: border-box; padding: 56px 64px; display: flex; flex-direction: column; gap: 28px; background: #F7F6F3;">
+  <div style="display: flex; flex-direction: column; gap: 8px;">
+    <div style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B;">Surfaces</div>
+    <h1 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 29px; font-weight: 700;">The day timeline board is the product</h1>
+  </div>
+
+  <section aria-label="Timeline board" style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px; box-shadow: 0 1px 2px rgba(31,35,40,.06); overflow: hidden;">
+    <div style="display: flex; height: 36px; border-bottom: 1px solid #E3E1DC;">
+      <div style="width: 200px; flex-shrink: 0; display: flex; align-items: center; padding: 0 16px; font-size: 12px; font-weight: 600; color: #5B616B;">Room</div>
+      <div style="position: relative; width: 960px; flex-shrink: 0; font-size: 12px; color: #5B616B;">
+        <span style="position: absolute; left: 4px; top: 10px;">08:00</span><span style="position: absolute; left: 84px; top: 10px;">09:00</span><span style="position: absolute; left: 164px; top: 10px;">10:00</span><span style="position: absolute; left: 244px; top: 10px;">11:00</span><span style="position: absolute; left: 324px; top: 10px;">12:00</span><span style="position: absolute; left: 404px; top: 10px;">13:00</span><span style="position: absolute; left: 484px; top: 10px;">14:00</span><span style="position: absolute; left: 564px; top: 10px;">15:00</span><span style="position: absolute; left: 644px; top: 10px;">16:00</span><span style="position: absolute; left: 724px; top: 10px;">17:00</span><span style="position: absolute; left: 804px; top: 10px;">18:00</span><span style="position: absolute; left: 884px; top: 10px;">19:00</span>
+      </div>
+      <div style="flex-grow: 1; display: flex; align-items: center; justify-content: flex-end; padding: 0 16px; font-size: 12px; color: #5B616B;">20:00</div>
+    </div>
+
+    <div style="display: flex; height: 64px; border-bottom: 1px solid #EFEDE8; opacity: .42;">
+      <div style="width: 200px; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 0 16px;"><span style="font-size: 14px; font-weight: 600;">Focus</span><span style="font-size: 12px; color: #5B616B;">Fits 2 · too small for 8</span></div>
+      <div style="position: relative; width: 960px; flex-shrink: 0; background-image: repeating-linear-gradient(90deg, #EFEDE8 0, #EFEDE8 1px, transparent 1px, transparent 80px);">
+        <div style="position: absolute; left: 80px; top: 12px; width: 40px; height: 40px; box-sizing: border-box; background: #EFEDE8; border: 1px solid #D6D3CC; border-radius: 8px;"></div>
+        <div style="position: absolute; left: 400px; top: 12px; width: 80px; height: 40px; box-sizing: border-box; padding: 4px 8px; background: #EFEDE8; border: 1px solid #D6D3CC; border-radius: 8px; font-size: 12px; font-weight: 600;">Booked</div>
+      </div>
+    </div>
+
+    <div style="display: flex; height: 64px; border-bottom: 1px solid #EFEDE8;">
+      <div style="width: 200px; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 0 16px;"><span style="font-size: 14px; font-weight: 600;">Team</span><span style="font-size: 12px; color: #5B616B;">Fits 6 · too small for 8</span></div>
+      <div style="position: relative; width: 960px; flex-shrink: 0; opacity: .42; background-image: repeating-linear-gradient(90deg, #EFEDE8 0, #EFEDE8 1px, transparent 1px, transparent 80px);">
+        <div style="position: absolute; left: 40px; top: 12px; width: 80px; height: 40px; box-sizing: border-box; padding: 4px 8px; background: #EFEDE8; border: 1px solid #D6D3CC; border-radius: 8px; font-size: 12px; font-weight: 600;">Booked</div>
+        <div style="position: absolute; left: 160px; top: 12px; width: 80px; height: 40px; box-sizing: border-box; padding: 4px 8px; background: #EFEDE8; border: 1px solid #D6D3CC; border-radius: 8px; font-size: 12px; font-weight: 600;">Booked</div>
+        <div style="position: absolute; left: 480px; top: 12px; width: 120px; height: 40px; box-sizing: border-box; padding: 4px 8px; background: #FFFFFF; border: 1.5px solid #1F2328; border-radius: 8px; font-size: 12px;"><div style="font-weight: 600;">Your booking</div>14:00–15:30</div>
+      </div>
+    </div>
+
+    <div style="display: flex; height: 64px; border-bottom: 1px solid #EFEDE8;">
+      <div style="width: 200px; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 0 16px;"><span style="font-size: 14px; font-weight: 600;">Board</span><span style="font-size: 12px; color: #5B616B;">Fits 12</span></div>
+      <div style="position: relative; width: 960px; flex-shrink: 0; background-image: repeating-linear-gradient(90deg, #EFEDE8 0, #EFEDE8 1px, transparent 1px, transparent 80px);">
+        <div style="position: absolute; left: 80px; top: 12px; width: 80px; height: 40px; box-sizing: border-box; padding: 4px 8px; background: #EFEDE8; border: 1px solid #D6D3CC; border-radius: 8px; font-size: 12px; font-weight: 600;">Booked</div>
+        <div style="position: absolute; left: 220px; top: 8px; width: 60px; height: 48px; box-sizing: border-box; padding: 4px 6px; background: #FFF1EA; border: 1.5px dashed #C2410C; border-radius: 8px; font-size: 11px; color: #9A3412;"><div style="font-weight: 600;">New</div>10:45–11:30</div>
+        <div style="position: absolute; left: 320px; top: 12px; width: 80px; height: 40px; box-sizing: border-box; padding: 4px 8px; background: #EFEDE8; border: 1px solid #D6D3CC; border-radius: 8px; font-size: 12px; font-weight: 600;">Booked</div>
+        <div style="position: absolute; left: 640px; top: 12px; width: 160px; height: 40px; box-sizing: border-box; padding: 4px 8px; background: #EFEDE8; border: 1px solid #D6D3CC; border-radius: 8px; font-size: 12px; font-weight: 600;">Booked</div>
+      </div>
+    </div>
+
+    <div style="position: relative; height: 0;">
+      <div style="position: absolute; left: 413px; top: -192px; width: 2px; height: 192px; background: #C2410C;"></div>
+      <div style="position: absolute; left: 388px; top: -222px; padding: 1px 6px; background: #C2410C; color: #FFFFFF; border-radius: 999px; font-size: 11px; font-weight: 600;">Now 10:40</div>
+    </div>
+    <div style="padding: 12px 16px; font-size: 12px; color: #5B616B; background: #F7F6F3;">Showing rooms that fit 8 people. Smaller rooms are dimmed, not hidden. Board's 10:00 no-show was released at 10:15 — the rest is free from 10:45. Old Room is not in use and not listed.</div>
+  </section>
+
+  <div style="display: flex; gap: 24px; align-items: stretch;">
+    <section aria-label="All bookings table" style="flex-grow: 1; display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px; box-shadow: 0 1px 2px rgba(31,35,40,.06); overflow: hidden;">
+      <table style="width: 100%; border-collapse: collapse;">
+        <thead><tr><th>Room</th><th>Person</th><th>Date</th><th>Time</th><th>People</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Board</td><td>Sara Hodžić</td><td>Tue 6 Oct</td><td>10:00–11:30</td><td>10</td><td><span style="display: inline-flex; height: 24px; align-items: center; padding: 0 10px; background: #FEF3C7; color: #92400E; border-radius: 999px; font-size: 12px; font-weight: 600;">No-show</span></td></tr>
+          <tr style="background: #FFF1EA;"><td>Team</td><td>Tomas Berg</td><td>Tue 6 Oct</td><td>10:00–11:00</td><td>5</td><td><span style="display: inline-flex; height: 24px; align-items: center; padding: 0 10px; background: #E7F5EC; color: #166534; border-radius: 999px; font-size: 12px; font-weight: 600;">Checked in</span></td></tr>
+          <tr><td>Team</td><td>Lena Novak</td><td>Tue 6 Oct</td><td>14:00–15:30</td><td>4</td><td><span style="display: inline-flex; height: 24px; align-items: center; padding: 0 10px; border: 1.5px solid #1F2328; border-radius: 999px; font-size: 12px; font-weight: 600;">Confirmed</span></td></tr>
+          <tr><td>Focus</td><td>Ivan Petrović</td><td>Wed 7 Oct</td><td>09:00–09:30</td><td>2</td><td><span style="display: inline-flex; height: 24px; align-items: center; padding: 0 10px; background: #F3F4F6; color: #4B5563; border-radius: 999px; font-size: 12px; font-weight: 600; text-decoration: line-through;">Cancelled</span> <span style="display: inline-flex; height: 24px; align-items: center; padding: 0 8px; border: 1.5px solid #B45309; color: #92400E; border-radius: 999px; font-size: 12px; font-weight: 600;">Late</span></td></tr>
+          <tr><td>Old Room</td><td>Amila Delić</td><td>Thu 8 Oct</td><td>11:00–12:00</td><td>3</td><td><span style="display: inline-flex; height: 24px; align-items: center; padding: 0 10px; background: #F3F4F6; color: #4B5563; border-radius: 999px; font-size: 12px; font-weight: 600;">Cancelled by admin</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <aside aria-label="Booking details" style="width: 380px; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px; padding: 24px; background: #FFFFFF; border-radius: 12px 0 0 12px; box-shadow: -16px 0 48px rgba(31,35,40,.20);">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;"><div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-size: 12px; color: #5B616B;">Booking</span><span style="font-family: 'Inter Tight', sans-serif; font-size: 20px; font-weight: 600;">Team · 10:00–11:00</span></div><button type="button" aria-label="Close details" style="width: 32px; height: 32px; background: transparent; border: 0; font-size: 18px; color: #5B616B;">×</button></div>
+      <dl style="margin: 0; display: grid; grid-template-columns: 110px 1fr; gap: 10px 12px; font-size: 14px;">
+        <dt style="color: #5B616B;">Person</dt><dd style="margin: 0;">Tomas Berg</dd>
+        <dt style="color: #5B616B;">Date</dt><dd style="margin: 0;">Tuesday 6 October 2026</dd>
+        <dt style="color: #5B616B;">People</dt><dd style="margin: 0;">5 of 6</dd>
+        <dt style="color: #5B616B;">Status</dt><dd style="margin: 0;">Checked in at 09:54</dd>
+        <dt style="color: #5B616B;">Booked by</dt><dd style="margin: 0;">Marko Kovač (admin) for Tomas</dd>
+      </dl>
+      <div style="display: flex; flex-direction: column; gap: 8px; padding-top: 8px; border-top: 1px solid #EFEDE8;">
+        <span style="font-size: 12px; font-weight: 600; color: #5B616B;">History</span>
+        <span style="font-size: 12px; color: #1F2328;">Fri 2 Oct 16:12 · Created by Marko Kovač</span>
+        <span style="font-size: 12px; color: #1F2328;">Mon 5 Oct 09:03 · Time changed 09:30 → 10:00 by Tomas Berg</span>
+        <span style="font-size: 12px; color: #1F2328;">Tue 6 Oct 09:54 · Checked in by Tomas Berg</span>
+      </div>
+      <div style="flex-grow: 1;"></div>
+      <button type="button" style="height: 40px; background: #FFFFFF; color: #B91C1C; border: 1px solid #FCA5A5; border-radius: 6px; font-size: 14px; font-weight: 600;" disabled>Can't cancel — meeting has started</button>
+    </aside>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px;">
+    <div style="display: flex; flex-direction: column; gap: 12px; align-items: flex-start; padding: 28px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px;">
+      <span style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B;">Empty</span>
+      <span style="font-size: 17px; font-weight: 600;">No upcoming bookings</span>
+      <span style="font-size: 14px; line-height: 1.5; color: #5B616B;">You can hold up to 3 at a time. Find a free slot on today's board.</span>
+      <a href="#" style="display: inline-flex; align-items: center; height: 40px; padding: 0 18px; background: #C2410C; color: #FFFFFF; border-radius: 6px; font-size: 14px; font-weight: 600; text-decoration: none;">Find a room</a>
+    </div>
+    <div aria-busy="true" style="display: flex; flex-direction: column; gap: 12px; padding: 28px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px;">
+      <span style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B;">Loading</span>
+      <div style="height: 14px; width: 60%; background: #EFEDE8; border-radius: 999px; animation: pulse 1.4s ease-in-out infinite;"></div>
+      <div style="height: 40px; background: #EFEDE8; border-radius: 8px; animation: pulse 1.4s ease-in-out infinite;"></div>
+      <div style="height: 40px; background: #EFEDE8; border-radius: 8px; animation: pulse 1.4s ease-in-out infinite;"></div>
+      <div style="height: 40px; width: 80%; background: #EFEDE8; border-radius: 8px; animation: pulse 1.4s ease-in-out infinite;"></div>
+    </div>
+    <div role="alert" style="display: flex; flex-direction: column; gap: 12px; align-items: flex-start; padding: 28px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px;">
+      <span style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B;">Error</span>
+      <span style="font-size: 17px; font-weight: 600;">Couldn't load the board</span>
+      <span style="font-size: 14px; line-height: 1.5; color: #5B616B;">Your bookings are safe. Try again in a moment.</span>
+      <button type="button" style="height: 40px; padding: 0 18px; background: #FFFFFF; color: #1F2328; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 14px; font-weight: 600;">Try again</button>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1480}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!-- @dsCard group="Screens 03 Admin" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Review — admin mobile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Inter+Tight:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1F2328;background:#F7F6F3;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+a{color:#1F2328;text-decoration:none}
+button{font-family:inherit}
+button:focus-visible,a:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(194,65,12,.35)}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #F7F6F3;">
+  <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 14px; padding: 32px 20px 16px;">
+    <a href="#" style="display: inline-flex; align-items: center; gap: 4px; font-size: 14px; font-weight: 600; color: #5B616B;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg>Admin</a>
+    <h1 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 24px; font-weight: 700;">Review</h1>
+    <div role="tablist" aria-label="Show" style="display: flex; padding: 3px; background: #EFEDE8; border-radius: 999px; gap: 2px;">
+      <button type="button" role="tab" aria-selected="true" style="flex-grow: 1; height: 38px; background: #FFFFFF; border: 0; border-radius: 999px; font-size: 14px; font-weight: 600; color: #1F2328; box-shadow: 0 1px 2px rgba(31,35,40,.12);">Late cancellations</button>
+      <button type="button" role="tab" style="flex-grow: 1; height: 38px; background: transparent; border: 0; border-radius: 999px; font-size: 14px; font-weight: 600; color: #5B616B;">No-shows</button>
+    </div>
+    <span style="font-size: 12px; color: #5B616B;">Last 30 days · for conversation, no automatic penalties</span>
+    <div style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px;">
+      <a href="#" style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid #EFEDE8;"><span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 16px; font-weight: 600;">Ivan Petrović</span><span style="font-size: 12px; color: #5B616B;">Latest Wed 7 Oct · 11 bookings</span></span><span style="font-size: 20px; font-weight: 600;">4</span></a>
+      <a href="#" style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid #EFEDE8;"><span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 16px; font-weight: 600;">Sara Hodžić</span><span style="font-size: 12px; color: #5B616B;">Latest Fri 2 Oct · 9 bookings</span></span><span style="font-size: 20px; font-weight: 600;">1</span></a>
+      <a href="#" style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid #EFEDE8;"><span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 16px; font-weight: 600;">Lena Novak</span><span style="font-size: 12px; color: #5B616B;">Latest Thu 1 Oct · 8 bookings</span></span><span style="font-size: 20px; font-weight: 600;">1</span></a>
+      <a href="#" style="display: flex; align-items: center; gap: 12px; padding: 14px 16px;"><span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 16px; font-weight: 600;">Petra Zorić</span><span style="font-size: 12px; color: #5B616B;">Latest Tue 29 Sep · 6 bookings</span></span><span style="font-size: 20px; font-weight: 600;">1</span></a>
+    </div>
+  </div>
+  <nav aria-label="Main" style="display: flex; height: 72px; box-sizing: border-box; padding-bottom: 8px; background: #FFFFFF; border-top: 1px solid #E3E1DC;">
+    <a href="#" style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500; color: #5B616B;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>Find</a>
+    <a href="#" style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500; color: #5B616B;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M8 3v4M16 3v4M4 10h16"></path></svg>My bookings</a>
+    <a href="#" aria-current="page" style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 600; color: #C2410C;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"></path></svg>Admin</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

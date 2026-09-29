@@ -1,0 +1,242 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Meeting Room Booking Pilot — Data Model",
+  "description": "Conceptual data model for UI generation. All instants are UTC (suffix _utc); dates named go_live_date and window_*_date are office-local calendar dates (Europe/Berlin assumed, configurable). Nothing is deleted; people and rooms are deactivated.",
+  "type": "object",
+  "properties": {
+    "$metadata": {
+      "type": "object",
+      "properties": {
+        "generated": { "type": "string", "format": "date" },
+        "domains": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "externalSystems": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "entitiesCount": { "type": "integer" },
+              "docsVersion": { "type": "string" }
+            }
+          }
+        }
+      },
+      "default": {
+        "generated": "2026-09-29",
+        "domains": ["people-and-identity", "rooms", "bookings", "audit", "import"],
+        "externalSystems": [
+          {
+            "name": "Microsoft Entra ID",
+            "entitiesCount": 1,
+            "docsVersion": "General platform knowledge; Context7 documentation not fetched. Verify against current Microsoft Entra documentation before the sign-in phase"
+          }
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "Person": {
+      "type": "object",
+      "title": "Person",
+      "description": "A user of the tool, managed by admins, with one role and a unique case-insensitive email address.",
+      "x-domain": "people-and-identity",
+      "x-ownership": "internal",
+      "x-external-system": null,
+      "properties": {
+        "id": { "type": "string", "format": "uuid", "x-primary-key": true },
+        "name": { "type": "string", "minLength": 1, "maxLength": 200, "description": "Display name shown in the picker and headers." },
+        "email": { "type": "string", "format": "email", "maxLength": 254, "description": "Identity key. Unique, case-insensitive. Matches import column person_email.", "x-unique": true, "x-case-insensitive": true },
+        "role": { "type": "string", "enum": ["Employee", "Admin"], "description": "Exactly one role per person." },
+        "is_active": { "type": "boolean", "description": "Inactive people are not listed in the picker." },
+        "external_identity_object_id": { "type": ["string", "null"], "format": "uuid", "description": "Immutable Entra object identifier; empty in the pilot.", "x-foreign-key": "EntraUser", "x-relationship": "linked-to", "x-cardinality": "1:1", "x-unique": true },
+        "external_identity_tenant_id": { "type": ["string", "null"], "format": "uuid", "description": "Entra tenant identifier; empty in the pilot." },
+        "external_identity_linked_at_utc": { "type": ["string", "null"], "format": "date-time", "description": "When the account was linked; empty in the pilot." },
+        "created_at_utc": { "type": "string", "format": "date-time" },
+        "updated_at_utc": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name", "email", "role", "is_active", "created_at_utc", "updated_at_utc"],
+      "x-relationships": [
+        { "entity": "Booking", "type": "has-many", "cardinality": "1:N", "description": "Bookings owned (owner_person_id)." },
+        { "entity": "Booking", "type": "has-many", "cardinality": "1:N", "description": "Bookings created (created_by_person_id), including admin bookings on behalf of others." },
+        { "entity": "Booking", "type": "has-many", "cardinality": "1:N", "description": "Bookings cancelled (cancelled_by_person_id)." },
+        { "entity": "AuditEvent", "type": "has-many", "cardinality": "1:N", "description": "Audit events where the person is the selected acting person." },
+        { "entity": "ImportRun", "type": "has-many", "cardinality": "1:N", "description": "Import runs started by the admin." },
+        { "entity": "EntraUser", "type": "has-one", "cardinality": "1:1", "description": "Optional future link to the Entra user by object identifier; no foreign key to an external system." }
+      ]
+    },
+    "EntraUser": {
+      "type": "object",
+      "title": "Entra user (external)",
+      "description": "A user object in the company's Microsoft Entra tenant. Not stored by this system; referenced by object identifier and read as gate claims. Subset from general platform knowledge.",
+      "x-domain": "people-and-identity",
+      "x-ownership": "external",
+      "x-external-system": "Microsoft Entra ID",
+      "properties": {
+        "id": { "type": "string", "format": "uuid", "description": "Object identifier, immutable.", "x-primary-key": true },
+        "tenant_id": { "type": "string", "format": "uuid", "description": "Directory identifier." },
+        "user_principal_name": { "type": "string", "description": "Sign-in name; may differ from mail." },
+        "mail": { "type": ["string", "null"], "format": "email", "description": "Email address; may be absent or an alias." },
+        "display_name": { "type": ["string", "null"], "description": "Display name; not stored." }
+      },
+      "required": ["id", "tenant_id", "user_principal_name"],
+      "x-relationships": [
+        { "entity": "Person", "type": "has-one", "cardinality": "1:1", "description": "At most one Person is linked to an Entra user." }
+      ]
+    },
+    "Room": {
+      "type": "object",
+      "title": "Room",
+      "description": "A bookable meeting room with a name, capacity and active flag.",
+      "x-domain": "rooms",
+      "x-ownership": "internal",
+      "x-external-system": null,
+      "properties": {
+        "id": { "type": "string", "format": "uuid", "x-primary-key": true },
+        "name": { "type": "string", "minLength": 1, "maxLength": 100, "description": "Unique, case-insensitive; matched exactly by the import.", "x-unique": true, "x-case-insensitive": true },
+        "capacity": { "type": "integer", "minimum": 1, "description": "Maximum attendees." },
+        "is_active": { "type": "boolean", "description": "Inactive rooms are not offered for booking." },
+        "created_at_utc": { "type": "string", "format": "date-time" },
+        "updated_at_utc": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name", "capacity", "is_active", "created_at_utc", "updated_at_utc"],
+      "x-relationships": [
+        { "entity": "Booking", "type": "has-many", "cardinality": "1:N", "description": "Bookings in this room." }
+      ]
+    },
+    "Booking": {
+      "type": "object",
+      "title": "Booking",
+      "description": "One reservation of one room for one time span by one person, with lifecycle status and cancellation facts.",
+      "x-domain": "bookings",
+      "x-ownership": "internal",
+      "x-external-system": null,
+      "properties": {
+        "id": { "type": "string", "format": "uuid", "x-primary-key": true },
+        "room_id": { "type": "string", "format": "uuid", "x-foreign-key": "Room", "x-relationship": "belongs-to", "x-cardinality": "N:1" },
+        "owner_person_id": { "type": "string", "format": "uuid", "description": "The person the booking is for; only this person can check in.", "x-foreign-key": "Person", "x-relationship": "belongs-to", "x-cardinality": "N:1" },
+        "created_by_person_id": { "type": "string", "format": "uuid", "description": "The owner, or the admin who booked on their behalf or ran the import.", "x-foreign-key": "Person", "x-relationship": "belongs-to", "x-cardinality": "N:1" },
+        "start_utc": { "type": "string", "format": "date-time", "description": "Start instant in UTC. Display and wall-clock rules use office local time." },
+        "end_utc": { "type": "string", "format": "date-time", "description": "End instant in UTC; after start_utc; duration 30 minutes to 4 hours." },
+        "attendees": { "type": "integer", "minimum": 1, "description": "Head count, at most the room capacity." },
+        "status": { "type": "string", "enum": ["Confirmed", "CheckedIn", "Done", "NoShow", "Cancelled"], "description": "Lifecycle status. 'Cancelled by admin' is a display label for Cancelled with an admin cancellation_origin." },
+        "checked_in_at_utc": { "type": ["string", "null"], "format": "date-time" },
+        "no_show_at_utc": { "type": ["string", "null"], "format": "date-time", "description": "Start plus 15 minutes; a no-show occupies the room only until this moment." },
+        "cancelled_at_utc": { "type": ["string", "null"], "format": "date-time" },
+        "cancelled_by_person_id": { "type": ["string", "null"], "format": "uuid", "x-foreign-key": "Person", "x-relationship": "belongs-to", "x-cardinality": "N:1" },
+        "cancellation_origin": { "type": ["string", "null"], "enum": ["OwnerCancelled", "AdminCancelled", "RoomDeactivated", "PersonDeactivated", null], "description": "Required when status is Cancelled. Actor type is derived: OwnerCancelled means the owner acted; the other values mean an admin acted." },
+        "is_late_cancellation": { "type": "boolean", "default": false, "description": "True only when the owner cancelled less than 2 hours before start. Never true for admin origins; never changes after cancellation." },
+        "source": { "type": "string", "enum": ["Manual", "Import"] },
+        "import_run_id": { "type": ["string", "null"], "format": "uuid", "x-foreign-key": "ImportRun", "x-relationship": "belongs-to", "x-cardinality": "N:1" },
+        "created_at_utc": { "type": "string", "format": "date-time" },
+        "updated_at_utc": { "type": "string", "format": "date-time" },
+        "row_version": { "type": "string", "contentEncoding": "base64", "description": "Optimistic concurrency token. POC (SQLite): application-managed token; Azure SQL: rowversion." }
+      },
+      "required": ["id", "room_id", "owner_person_id", "created_by_person_id", "start_utc", "end_utc", "attendees", "status", "is_late_cancellation", "source", "created_at_utc", "updated_at_utc", "row_version"],
+      "x-relationships": [
+        { "entity": "Room", "type": "belongs-to", "cardinality": "N:1", "description": "Exactly one room." },
+        { "entity": "Person", "type": "belongs-to", "cardinality": "N:1", "description": "Exactly one owner." },
+        { "entity": "Person", "type": "belongs-to", "cardinality": "N:1", "description": "Exactly one creator." },
+        { "entity": "Person", "type": "belongs-to", "cardinality": "N:1", "description": "Optional canceller." },
+        { "entity": "ImportRun", "type": "belongs-to", "cardinality": "N:1", "description": "Optional; only for imported bookings." },
+        { "entity": "AuditEvent", "type": "has-many", "cardinality": "1:N", "description": "Logical link through target_type and target_id." }
+      ]
+    },
+    "AuditEvent": {
+      "type": "object",
+      "title": "Audit event",
+      "description": "Append-only record of a state change or admin action, with the picked acting person and the access-gate account.",
+      "x-domain": "audit",
+      "x-ownership": "internal",
+      "x-external-system": null,
+      "properties": {
+        "id": { "type": "string", "format": "uuid", "x-primary-key": true },
+        "occurred_at_utc": { "type": "string", "format": "date-time" },
+        "actor_kind": { "type": "string", "enum": ["Person", "System"], "description": "System for the status sweeper." },
+        "acting_person_id": { "type": ["string", "null"], "format": "uuid", "description": "The person selected in the picker; empty for System.", "x-foreign-key": "Person", "x-relationship": "belongs-to", "x-cardinality": "N:1" },
+        "acted_as_admin": { "type": "boolean", "description": "True when the acting person held the Admin role at the time." },
+        "gate_sign_in_name": { "type": ["string", "null"], "maxLength": 254, "description": "Sign-in name of the account that passed the access gate; audit metadata only." },
+        "gate_object_id": { "type": ["string", "null"], "format": "uuid", "description": "Entra object identifier of the gate account; audit metadata only." },
+        "gate_identity_mismatch": { "type": ["boolean", "null"], "description": "True when the gate account does not correspond to the acting person's email; informational, never blocks." },
+        "action": { "type": "string", "enum": ["PickerSwitch", "BookingCreated", "BookingEdited", "BookingCancelled", "BookingCheckedIn", "BookingMarkedNoShow", "BookingMarkedDone", "RoomCreated", "RoomUpdated", "RoomDeactivated", "RoomReactivated", "PersonCreated", "PersonUpdated", "PersonDeactivated", "PersonReactivated", "ImportRunCompleted", "ImportFileRefused"] },
+        "target_type": { "type": ["string", "null"], "enum": ["Booking", "Room", "Person", "ImportRun", null], "description": "Logical reference; no foreign key." },
+        "target_id": { "type": ["string", "null"], "format": "uuid" },
+        "details": { "type": ["string", "null"], "description": "Compact JSON text of before/after facts; no request bodies, no other people's emails." }
+      },
+      "required": ["id", "occurred_at_utc", "actor_kind", "acted_as_admin", "action"],
+      "x-relationships": [
+        { "entity": "Person", "type": "belongs-to", "cardinality": "N:1", "description": "Optional acting person." },
+        { "entity": "Booking", "type": "belongs-to", "cardinality": "N:1", "description": "Optional logical target." },
+        { "entity": "Room", "type": "belongs-to", "cardinality": "N:1", "description": "Optional logical target." },
+        { "entity": "ImportRun", "type": "belongs-to", "cardinality": "N:1", "description": "Optional logical target." }
+      ]
+    },
+    "ImportRun": {
+      "type": "object",
+      "title": "Import run",
+      "description": "One execution of the one-off spreadsheet import: who ran it, the window, and the resulting counts.",
+      "x-domain": "import",
+      "x-ownership": "internal",
+      "x-external-system": null,
+      "properties": {
+        "id": { "type": "string", "format": "uuid", "x-primary-key": true },
+        "run_by_person_id": { "type": "string", "format": "uuid", "x-foreign-key": "Person", "x-relationship": "belongs-to", "x-cardinality": "N:1" },
+        "started_at_utc": { "type": "string", "format": "date-time" },
+        "completed_at_utc": { "type": ["string", "null"], "format": "date-time" },
+        "outcome": { "type": "string", "enum": ["Completed", "FileRefused"] },
+        "refusal_reason": { "type": ["string", "null"], "maxLength": 500 },
+        "file_name": { "type": ["string", "null"], "maxLength": 260, "description": "Untrusted display text." },
+        "file_size_bytes": { "type": ["integer", "null"], "minimum": 0 },
+        "go_live_date": { "type": "string", "format": "date", "description": "Office-local calendar date entered by the admin." },
+        "window_start_date": { "type": "string", "format": "date", "description": "Go-live date if a weekday, else the following Monday." },
+        "window_end_date": { "type": "string", "format": "date", "description": "Fifth working day of the window." },
+        "rows_total": { "type": "integer", "minimum": 0 },
+        "rows_imported": { "type": "integer", "minimum": 0 },
+        "rows_duplicate": { "type": "integer", "minimum": 0 },
+        "rows_rejected": { "type": "integer", "minimum": 0 }
+      },
+      "required": ["id", "run_by_person_id", "started_at_utc", "outcome", "go_live_date", "window_start_date", "window_end_date", "rows_total", "rows_imported", "rows_duplicate", "rows_rejected"],
+      "x-relationships": [
+        { "entity": "Person", "type": "belongs-to", "cardinality": "N:1", "description": "The admin who ran it." },
+        { "entity": "Booking", "type": "has-many", "cardinality": "1:N", "description": "Bookings created by this run." },
+        { "entity": "ImportReportRow", "type": "has-many", "cardinality": "1:N", "description": "Rejected and duplicate rows." }
+      ]
+    },
+    "ImportReportRow": {
+      "type": "object",
+      "title": "Import report row",
+      "description": "One line of the import report for a row that was not imported: rejected with reasons, or reported as a duplicate. Raw values are kept as received.",
+      "x-domain": "import",
+      "x-ownership": "internal",
+      "x-external-system": null,
+      "properties": {
+        "id": { "type": "string", "format": "uuid", "x-primary-key": true },
+        "import_run_id": { "type": "string", "format": "uuid", "x-foreign-key": "ImportRun", "x-relationship": "belongs-to", "x-cardinality": "N:1" },
+        "line_number": { "type": "integer", "minimum": 2, "description": "Line in the uploaded file; header is line 1." },
+        "outcome": { "type": "string", "enum": ["Rejected", "Duplicate"] },
+        "raw_room": { "type": ["string", "null"], "maxLength": 200 },
+        "raw_person_email": { "type": ["string", "null"], "maxLength": 320 },
+        "raw_date": { "type": ["string", "null"], "maxLength": 50 },
+        "raw_start": { "type": ["string", "null"], "maxLength": 50 },
+        "raw_end": { "type": ["string", "null"], "maxLength": 50 },
+        "raw_attendees": { "type": ["string", "null"], "maxLength": 50 },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["MissingOrBadFormat", "RoomUnknown", "RoomInactive", "PersonUnknown", "PersonInactive", "OutsideWindow", "NotWorkingDay", "OffGrid", "OutsideOfficeHours", "DurationTooShort", "DurationTooLong", "CapacityExceeded", "InvalidAttendees", "Overlap", "LimitExceeded", "InPast"]
+          },
+          "description": "Every broken rule, by name. Stored as JSON text; empty for Duplicate."
+        },
+        "duplicate_of_booking_id": { "type": ["string", "null"], "format": "uuid", "x-foreign-key": "Booking", "x-relationship": "belongs-to", "x-cardinality": "N:1" }
+      },
+      "required": ["id", "import_run_id", "line_number", "outcome", "reasons"],
+      "x-relationships": [
+        { "entity": "ImportRun", "type": "belongs-to", "cardinality": "N:1", "description": "Exactly one run." },
+        { "entity": "Booking", "type": "belongs-to", "cardinality": "N:1", "description": "Optional; the existing booking a duplicate matched." }
+      ]
+    }
+  }
+}

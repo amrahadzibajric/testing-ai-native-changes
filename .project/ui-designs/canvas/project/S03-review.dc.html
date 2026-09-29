@@ -1,0 +1,81 @@
+<!-- @dsCard group="Screens 03 Admin" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Review late cancellations and no-shows — admin web</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Inter+Tight:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1F2328;background:#F7F6F3;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+a{color:#1F2328;text-decoration:none}
+button,select{font-family:inherit;transition:border-color .14s,box-shadow .14s,background-color .14s}
+button:focus-visible,select:focus-visible,a:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(194,65,12,.35)}
+th{font-size:12px;font-weight:600;color:#5B616B;text-align:left;padding:12px 16px;border-bottom:1px solid #E3E1DC}
+td{font-size:14px;padding:14px 16px;border-bottom:1px solid #EFEDE8}
+</style>
+</helmet>
+<div style="width: 1440px; height: 900px; box-sizing: border-box; display: flex; flex-direction: column; background: #F7F6F3; overflow: hidden;">
+  <nav aria-label="Main" style="display: flex; align-items: center; gap: 28px; height: 60px; flex-shrink: 0; padding: 0 64px; background: #FFFFFF; border-bottom: 1px solid #E3E1DC;">
+    <span style="font-family: 'Inter Tight', sans-serif; font-size: 17px; font-weight: 700;">Rooms</span>
+    <div style="display: flex; gap: 4px; height: 100%;">
+      <a href="#" style="display: flex; align-items: center; padding: 0 12px; font-size: 14px; font-weight: 500; color: #5B616B;">Find a room</a>
+      <a href="#" style="display: flex; align-items: center; padding: 0 12px; font-size: 14px; font-weight: 500; color: #5B616B;">My bookings</a>
+      <span style="width: 1px; margin: 18px 8px; background: #E3E1DC;"></span>
+      <a href="#" style="display: flex; align-items: center; padding: 0 12px; font-size: 14px; font-weight: 500; color: #5B616B;">All bookings</a>
+      <a href="#" aria-current="page" style="display: flex; align-items: center; padding: 0 12px; font-size: 14px; font-weight: 600; box-shadow: inset 0 -2px 0 #C2410C;">Review</a>
+      <a href="#" style="display: flex; align-items: center; padding: 0 12px; font-size: 14px; font-weight: 500; color: #5B616B;">Rooms</a>
+      <a href="#" style="display: flex; align-items: center; padding: 0 12px; font-size: 14px; font-weight: 500; color: #5B616B;">People</a>
+      <a href="#" style="display: flex; align-items: center; padding: 0 12px; font-size: 14px; font-weight: 500; color: #5B616B;">Import</a>
+    </div>
+    <div style="flex-grow: 1;"></div>
+    <button type="button" style="display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 10px 0 6px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 999px; font-size: 14px; font-weight: 500; color: #1F2328;"><span style="width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; background: #1F2328; color: #FFFFFF; border-radius: 999px; font-size: 12px; font-weight: 600;">MK</span>Marko Kovač · Admin</button>
+  </nav>
+
+  <div style="flex-grow: 1; display: flex; gap: 24px; padding: 32px 64px; min-height: 0;">
+    <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 20px; min-width: 0;">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between;">
+        <div style="display: flex; flex-direction: column; gap: 4px;"><h1 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 29px; font-weight: 700;">Review</h1><span style="font-size: 14px; color: #5B616B;">Who cancels late or doesn't turn up. For conversation only — nothing is blocked automatically.</span></div>
+        <select aria-label="Period" style="height: 36px; width: 170px; padding: 0 10px; background: #FFFFFF; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 14px;"><option>Last 30 days</option></select>
+      </div>
+      <div style="flex-grow: 1; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px; overflow: hidden;">
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead><tr><th>Person</th><th style="text-align: right;">Late cancellations</th><th style="text-align: right;">No-shows</th><th style="text-align: right;">Bookings made</th><th>Most recent</th></tr></thead>
+          <tbody>
+            <tr style="background: #FFF1EA; box-shadow: inset 3px 0 0 #C2410C;"><td style="font-weight: 600;">Ivan Petrović</td><td style="text-align: right; font-weight: 600;">4</td><td style="text-align: right;">1</td><td style="text-align: right;">11</td><td>Wed 7 Oct · late cancellation</td></tr>
+            <tr><td style="font-weight: 600;">Sara Hodžić</td><td style="text-align: right;">1</td><td style="text-align: right; font-weight: 600;">3</td><td style="text-align: right;">9</td><td>Tue 6 Oct · no-show</td></tr>
+            <tr><td style="font-weight: 600;">Lena Novak</td><td style="text-align: right;">1</td><td style="text-align: right;">1</td><td style="text-align: right;">8</td><td>Mon 5 Oct · no-show</td></tr>
+            <tr><td style="font-weight: 600;">Petra Zorić</td><td style="text-align: right;">1</td><td style="text-align: right;">0</td><td style="text-align: right;">6</td><td>Tue 29 Sep · late cancellation</td></tr>
+            <tr><td style="font-weight: 600;">Tomas Berg</td><td style="text-align: right;">0</td><td style="text-align: right;">1</td><td style="text-align: right;">7</td><td>Thu 24 Sep · no-show</td></tr>
+          </tbody>
+        </table>
+        <div style="padding: 12px 16px; font-size: 12px; color: #5B616B;">People with none in the period are not listed. Admin cancellations and room or person deactivations never count as late.</div>
+      </div>
+    </div>
+
+    <aside aria-label="Ivan Petrović's events" style="width: 400px; flex-shrink: 0; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px; padding: 24px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px;">
+      <div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-size: 12px; color: #5B616B;">Last 30 days</span><h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 20px; font-weight: 600;">Ivan Petrović</h2><span style="font-size: 12px; color: #5B616B;">ivan.petrovic@company.example</span></div>
+      <div style="display: flex; flex-direction: column;">
+        <div style="display: flex; flex-direction: column; gap: 2px; padding: 12px 0; border-bottom: 1px solid #EFEDE8;"><span style="font-size: 14px; font-weight: 600;">Late cancellation · Focus</span><span style="font-size: 12px; color: #5B616B;">Wed 7 Oct 09:00–09:30 · cancelled 07:48, 1 h 12 min before</span></div>
+        <div style="display: flex; flex-direction: column; gap: 2px; padding: 12px 0; border-bottom: 1px solid #EFEDE8;"><span style="font-size: 14px; font-weight: 600;">Late cancellation · Board</span><span style="font-size: 12px; color: #5B616B;">Fri 2 Oct 14:00–15:00 · cancelled 13:20, 40 min before</span></div>
+        <div style="display: flex; flex-direction: column; gap: 2px; padding: 12px 0; border-bottom: 1px solid #EFEDE8;"><span style="font-size: 14px; font-weight: 600;">No-show · Team</span><span style="font-size: 12px; color: #5B616B;">Wed 30 Sep 10:00–11:00 · released 10:15</span></div>
+        <div style="display: flex; flex-direction: column; gap: 2px; padding: 12px 0; border-bottom: 1px solid #EFEDE8;"><span style="font-size: 14px; font-weight: 600;">Late cancellation · Team</span><span style="font-size: 12px; color: #5B616B;">Mon 28 Sep 16:00–17:00 · cancelled 15:05, 55 min before</span></div>
+        <div style="display: flex; flex-direction: column; gap: 2px; padding: 12px 0;"><span style="font-size: 14px; font-weight: 600;">Late cancellation · Focus</span><span style="font-size: 12px; color: #5B616B;">Thu 24 Sep 09:30–10:00 · cancelled 08:10, 1 h 20 min before</span></div>
+      </div>
+      <div style="flex-grow: 1;"></div>
+      <a href="#" style="font-size: 14px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px;">See all of Ivan's bookings</a>
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

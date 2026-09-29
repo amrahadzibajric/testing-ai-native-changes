@@ -1,0 +1,110 @@
+{
+  "surface": "canvas",
+  "surfaceReason": "claude-design MCP not connected this session; DesignSync is restricted to user-started /design-sync library sync, so the claude.ai Design canvas Artifact was used.",
+  "canvasUrl": "https://claude.ai/artifact/To59cLQHzaCeyPeWuDtcNa",
+  "title": "Meeting Room Booking — UI Designs",
+  "createdAt": "2026-09-29",
+  "updatedAt": "2026-09-29",
+  "phase": "1-system",
+  "pushedFileCount": 29,
+  "workingFiles": ".project/ui-designs/canvas/project/",
+  "pages": [
+    {
+      "id": "style-guide",
+      "name": "Style Guide"
+    },
+    {
+      "id": "s01-entry",
+      "name": "01 Entry"
+    },
+    {
+      "id": "s02-booking",
+      "name": "02 Booking"
+    },
+    {
+      "id": "s03-admin",
+      "name": "03 Admin"
+    },
+    {
+      "id": "s04-prototype",
+      "name": "04 Prototype"
+    }
+  ],
+  "artboards": {
+    "Main": {
+      "page": "style-guide",
+      "kind": "style-guide",
+      "group": "Brand"
+    },
+    "Status": {
+      "page": "style-guide",
+      "kind": "style-guide",
+      "group": "Status"
+    },
+    "Controls": {
+      "page": "style-guide",
+      "kind": "style-guide",
+      "group": "Controls"
+    },
+    "Navigation": {
+      "page": "style-guide",
+      "kind": "style-guide",
+      "group": "Navigation"
+    },
+    "Surfaces": {
+      "page": "style-guide",
+      "kind": "style-guide",
+      "group": "Surfaces"
+    }
+  },
+  "groups": {
+    "01-entry": {
+      "status": "pushed",
+      "files": [
+        "S01-pick-user.dc.html",
+        "S01-pick-user-mobile.dc.html",
+        "S01-pick-user-states.dc.html"
+      ],
+      "note": "Presence confirmed in publish file listing; no screenshot capability on the canvas surface, so not visually self-checked."
+    },
+    "02-booking": {
+      "status": "pushed",
+      "files": [
+        "S02-find-room.dc.html",
+        "S02-find-room-mobile.dc.html",
+        "S02-book-drawer.dc.html",
+        "S02-edit-sheet-mobile.dc.html",
+        "S02-my-bookings.dc.html",
+        "S02-my-bookings-mobile.dc.html",
+        "S02-states.dc.html"
+      ],
+      "note": "Presence confirmed in publish file listing; not visually self-checked (no screenshot capability)."
+    },
+    "03-admin": {
+      "status": "pushed",
+      "files": [
+        "S03-all-bookings.dc.html",
+        "S03-all-bookings-mobile.dc.html",
+        "S03-review.dc.html",
+        "S03-review-mobile.dc.html",
+        "S03-rooms.dc.html",
+        "S03-rooms-mobile.dc.html",
+        "S03-people.dc.html",
+        "S03-people-mobile.dc.html",
+        "S03-import.dc.html",
+        "S03-import-mobile.dc.html",
+        "S03-states.dc.html",
+        "S03-admin-mobile.dc.html"
+      ],
+      "note": "Presence confirmed in publish file listing; not visually self-checked (no screenshot capability)."
+    },
+    "04-prototype": {
+      "status": "pushed",
+      "files": [
+        "Prototype.dc.html"
+      ],
+      "note": "Interactive (is_interactive); presence confirmed; not visually self-checked."
+    }
+  },
+  "screensStatus": "All three screen groups and the prototype are pushed and their presence is confirmed by the publish file listing. None has been visually self-checked (the canvas surface offers no screenshot capability), so phase stays 1-system per the skill rule; set 2-screens after a visual review."
+}

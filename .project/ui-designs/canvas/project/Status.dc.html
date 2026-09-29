@@ -1,0 +1,78 @@
+<!-- @dsCard group="Status" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Status — booking states and messages</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Inter+Tight:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1F2328;background:#F7F6F3;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+::selection{background:rgba(194,65,12,.18)}
+</style>
+</helmet>
+<div style="width: 1280px; height: 960px; box-sizing: border-box; padding: 56px 64px; display: flex; flex-direction: column; gap: 32px; background: #F7F6F3;">
+  <div style="display: flex; flex-direction: column; gap: 8px;">
+    <div style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B;">Status</div>
+    <h1 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 29px; font-weight: 700;">Booking states are semantic, never decorative</h1>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 16px; padding: 24px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px; box-shadow: 0 1px 2px rgba(31,35,40,.06);">
+    <div style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B;">Status chips</div>
+    <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+      <span style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border: 1.5px solid #1F2328; border-radius: 999px; font-size: 12px; font-weight: 600;">Confirmed</span>
+      <span style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; background: #E7F5EC; color: #166534; border-radius: 999px; font-size: 12px; font-weight: 600;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"></path></svg>Checked in</span>
+      <span style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; background: #EFEDE8; color: #1F2328; border-radius: 999px; font-size: 12px; font-weight: 600;">Done</span>
+      <span style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; background: #FEF3C7; color: #92400E; border-radius: 999px; font-size: 12px; font-weight: 600;">No-show</span>
+      <span style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; background: #F3F4F6; color: #4B5563; border-radius: 999px; font-size: 12px; font-weight: 600; text-decoration: line-through;">Cancelled</span>
+      <span style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; background: #F3F4F6; color: #4B5563; border-radius: 999px; font-size: 12px; font-weight: 600;">Cancelled by admin</span>
+      <span style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border: 1.5px solid #B45309; color: #92400E; border-radius: 999px; font-size: 12px; font-weight: 600;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4h11l-2 4 2 4H5"></path></svg>Late cancellation</span>
+    </div>
+    <p style="margin: 0; font-size: 12px; color: #5B616B;">Checked in and No-show also differ in lightness, not hue alone. Cancelled by admin covers room or person deactivation and direct admin cancels — never late-flagged (ADR-0015).</p>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 16px; padding: 24px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px; box-shadow: 0 1px 2px rgba(31,35,40,.06);">
+    <div style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B;">Timeline blocks · 15-minute grid, 20 px per slot</div>
+    <div style="position: relative; height: 56px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 8px; background-image: repeating-linear-gradient(90deg, #EFEDE8 0, #EFEDE8 1px, transparent 1px, transparent 80px);">
+      <div style="position: absolute; left: 20px; top: 8px; width: 120px; height: 38px; box-sizing: border-box; padding: 4px 8px; background: #EFEDE8; border: 1px solid #D6D3CC; border-radius: 8px; font-size: 12px; color: #5B616B;"><div style="font-weight: 600; color: #1F2328;">Booked</div>08:15–09:45</div>
+      <div style="position: absolute; left: 180px; top: 8px; width: 160px; height: 38px; box-sizing: border-box; padding: 4px 8px; background: #FFFFFF; border: 1.5px solid #1F2328; border-radius: 8px; font-size: 12px; color: #5B616B;"><div style="font-weight: 600; color: #1F2328;">Your booking</div>10:00–12:00</div>
+      <div style="position: absolute; left: 380px; top: 8px; width: 120px; height: 38px; box-sizing: border-box; padding: 4px 8px; background: #E7F5EC; border: 1.5px solid #166534; border-radius: 8px; font-size: 12px; color: #166534;"><div style="font-weight: 600;">Checked in</div>12:15–13:45</div>
+      <div style="position: absolute; left: 540px; top: 8px; width: 100px; height: 38px; box-sizing: border-box; padding: 4px 8px; background: #FFF1EA; border: 1.5px dashed #C2410C; border-radius: 8px; font-size: 12px; color: #9A3412;"><div style="font-weight: 600;">New booking</div>14:00–15:15</div>
+      <div style="position: absolute; left: 680px; top: 8px; width: 80px; height: 38px; box-sizing: border-box; padding: 4px 8px; background: repeating-linear-gradient(135deg, #FEF3C7 0, #FEF3C7 6px, #FFFBEB 6px, #FFFBEB 12px); border: 1px solid #D97706; border-radius: 8px; font-size: 12px; color: #92400E;"><div style="font-weight: 600;">Released</div>No-show</div>
+      <div style="position: absolute; left: 853px; top: -6px; width: 2px; height: 68px; background: #C2410C;"></div>
+      <div style="position: absolute; left: 832px; top: -24px; padding: 1px 6px; background: #C2410C; color: #FFFFFF; border-radius: 999px; font-size: 11px; font-weight: 600;">Now 10:40</div>
+    </div>
+    <p style="margin: 0; font-size: 12px; color: #5B616B;">Employees see others' bookings only as “Booked” — no name, no status (privacy rule). Their own bookings carry the graphite outline. Accent appears only on the new selection and the now line.</p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px;">
+    <div role="status" style="display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 8px; box-shadow: 0 6px 20px rgba(31,35,40,.12);">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#166534" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg>
+      <div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 14px; font-weight: 600;">Booked Board, 10:45–11:30</span><span style="font-size: 12px; color: #5B616B;">You have 2 of 3 upcoming bookings.</span></div>
+    </div>
+    <div role="alert" style="display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; background: #FEF2F2; border: 1px solid #FCA5A5; border-radius: 8px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B91C1C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v6M12 17h.01"></path></svg>
+      <div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 14px; font-weight: 600; color: #991B1B;">Board is already booked 10:00–11:00</span><span style="font-size: 12px; color: #7F1D1D;">Pick a time that ends by 10:00 or starts at 11:00 or later.</span></div>
+    </div>
+    <div style="display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; background: #FFFBEB; border: 1px solid #FCD34D; border-radius: 8px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#92400E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></svg>
+      <div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 14px; font-weight: 600; color: #78350F;">This will count as a late cancellation</span><span style="font-size: 12px; color: #78350F;">The meeting starts in 1 h 20 min. Admins can see late cancellations.</span></div>
+    </div>
+    <div style="display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 8px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F2328" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v6M12 7h.01"></path></svg>
+      <div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 14px; font-weight: 600;">Check-in opens at 13:50</span><span style="font-size: 12px; color: #5B616B;">From 10 minutes before the start until 15 minutes after.</span></div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":960}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

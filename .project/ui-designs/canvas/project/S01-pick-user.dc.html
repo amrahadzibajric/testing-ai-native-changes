@@ -1,0 +1,54 @@
+<!-- @dsCard group="Screens 01 Entry" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pick a user — web</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Inter+Tight:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1F2328;background:#F7F6F3;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+::selection{background:rgba(194,65,12,.18)}
+button,input{font-family:inherit;transition:border-color .14s,box-shadow .14s,background-color .14s}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(194,65,12,.35)}
+.person:hover{background:#F7F6F3}
+</style>
+</helmet>
+<div style="width: 1280px; height: 800px; box-sizing: border-box; display: flex; background: #F7F6F3;">
+  <div style="width: 520px; box-sizing: border-box; padding: 96px 64px; display: flex; flex-direction: column; gap: 20px;">
+    <span style="font-family: 'Inter Tight', sans-serif; font-size: 17px; font-weight: 700;">Rooms</span>
+    <h1 style="margin: 24px 0 0; font-family: 'Inter Tight', sans-serif; font-size: 35px; font-weight: 700; letter-spacing: -.01em; line-height: 1.15;">Who's booking?</h1>
+    <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #5B616B; max-width: 380px;">There's no sign-in during the pilot. Pick your name to see the rooms and your own bookings. You can switch at any time from the top bar.</p>
+    <div style="flex-grow: 1;"></div>
+    <p style="margin: 0; font-size: 12px; line-height: 1.6; color: #5B616B; max-width: 360px;">Only active people are listed. If your name is missing, ask an office admin to add you.</p>
+  </div>
+  <div style="flex-grow: 1; box-sizing: border-box; padding: 96px 96px 64px 0; display: flex; flex-direction: column; gap: 16px;">
+    <div style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 14px; background: #FFFFFF; border: 1px solid #C9C6BF; border-radius: 6px;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B616B" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
+      <input aria-label="Search people" placeholder="Search by name or email" style="flex-grow: 1; border: 0; font-size: 14px; color: #1F2328; background: transparent;">
+      <span style="font-size: 12px; color: #5B616B;">8 people</span>
+    </div>
+    <div role="list" style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px; box-shadow: 0 1px 2px rgba(31,35,40,.06); overflow: hidden;">
+      <button type="button" role="listitem" class="person" style="display: flex; align-items: center; gap: 14px; height: 60px; padding: 0 20px; background: #FFFFFF; border: 0; border-bottom: 1px solid #EFEDE8; text-align: left; cursor: pointer;"><span style="width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; background: #EFEDE8; border-radius: 999px; font-size: 12px; font-weight: 600;">AD</span><span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 14px; font-weight: 600;">Amila Delić</span><span style="font-size: 12px; color: #5B616B;">amila.delic@company.example</span></span></button>
+      <button type="button" role="listitem" class="person" style="display: flex; align-items: center; gap: 14px; height: 60px; padding: 0 20px; background: #FFFFFF; border: 0; border-bottom: 1px solid #EFEDE8; text-align: left; cursor: pointer;"><span style="width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; background: #EFEDE8; border-radius: 999px; font-size: 12px; font-weight: 600;">IP</span><span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 14px; font-weight: 600;">Ivan Petrović</span><span style="font-size: 12px; color: #5B616B;">ivan.petrovic@company.example</span></span></button>
+      <button type="button" role="listitem" class="person" style="display: flex; align-items: center; gap: 14px; height: 60px; padding: 0 20px; background: #FFF1EA; border: 0; border-bottom: 1px solid #EFEDE8; text-align: left; cursor: pointer; box-shadow: inset 3px 0 0 #C2410C;"><span style="width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; background: #FFFFFF; border-radius: 999px; font-size: 12px; font-weight: 600;">LN</span><span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 14px; font-weight: 600;">Lena Novak</span><span style="font-size: 12px; color: #5B616B;">lena.novak@company.example</span></span><span style="font-size: 12px; font-weight: 600; color: #9A3412;">Last used on this device</span></button>
+      <button type="button" role="listitem" class="person" style="display: flex; align-items: center; gap: 14px; height: 60px; padding: 0 20px; background: #FFFFFF; border: 0; border-bottom: 1px solid #EFEDE8; text-align: left; cursor: pointer;"><span style="width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; background: #1F2328; color: #FFFFFF; border-radius: 999px; font-size: 12px; font-weight: 600;">MK</span><span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 14px; font-weight: 600;">Marko Kovač</span><span style="font-size: 12px; color: #5B616B;">marko.kovac@company.example</span></span><span style="height: 22px; display: inline-flex; align-items: center; padding: 0 8px; border: 1px solid #C9C6BF; border-radius: 999px; font-size: 12px; font-weight: 600;">Admin</span></button>
+      <button type="button" role="listitem" class="person" style="display: flex; align-items: center; gap: 14px; height: 60px; padding: 0 20px; background: #FFFFFF; border: 0; border-bottom: 1px solid #EFEDE8; text-align: left; cursor: pointer;"><span style="width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; background: #1F2328; color: #FFFFFF; border-radius: 999px; font-size: 12px; font-weight: 600;">NH</span><span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 14px; font-weight: 600;">Nina Horvat</span><span style="font-size: 12px; color: #5B616B;">nina.horvat@company.example</span></span><span style="height: 22px; display: inline-flex; align-items: center; padding: 0 8px; border: 1px solid #C9C6BF; border-radius: 999px; font-size: 12px; font-weight: 600;">Admin</span></button>
+      <button type="button" role="listitem" class="person" style="display: flex; align-items: center; gap: 14px; height: 60px; padding: 0 20px; background: #FFFFFF; border: 0; border-bottom: 1px solid #EFEDE8; text-align: left; cursor: pointer;"><span style="width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; background: #EFEDE8; border-radius: 999px; font-size: 12px; font-weight: 600;">PZ</span><span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 14px; font-weight: 600;">Petra Zorić</span><span style="font-size: 12px; color: #5B616B;">petra.zoric@company.example</span></span></button>
+      <button type="button" role="listitem" class="person" style="display: flex; align-items: center; gap: 14px; height: 60px; padding: 0 20px; background: #FFFFFF; border: 0; border-bottom: 1px solid #EFEDE8; text-align: left; cursor: pointer;"><span style="width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; background: #EFEDE8; border-radius: 999px; font-size: 12px; font-weight: 600;">SH</span><span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 14px; font-weight: 600;">Sara Hodžić</span><span style="font-size: 12px; color: #5B616B;">sara.hodzic@company.example</span></span></button>
+      <button type="button" role="listitem" class="person" style="display: flex; align-items: center; gap: 14px; height: 60px; padding: 0 20px; background: #FFFFFF; border: 0; text-align: left; cursor: pointer;"><span style="width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; background: #EFEDE8; border-radius: 999px; font-size: 12px; font-weight: 600;">TB</span><span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 14px; font-weight: 600;">Tomas Berg</span><span style="font-size: 12px; color: #5B616B;">tomas.berg@company.example</span></span></button>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

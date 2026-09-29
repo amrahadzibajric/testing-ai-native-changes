@@ -1,0 +1,80 @@
+<!-- @dsCard group="Screens 03 Admin" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Import upcoming-week bookings — admin web</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Inter+Tight:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1F2328;background:#F7F6F3;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+a{color:#1F2328;text-decoration:none}
+button{font-family:inherit;transition:border-color .14s,box-shadow .14s,background-color .14s}
+button:focus-visible,a:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(194,65,12,.35)}
+th{font-size:12px;font-weight:600;color:#5B616B;text-align:left;padding:10px 14px;border-bottom:1px solid #E3E1DC}
+td{font-size:13px;padding:12px 14px;border-bottom:1px solid #EFEDE8;vertical-align:top}
+</style>
+</helmet>
+<div style="width: 1440px; height: 900px; box-sizing: border-box; display: flex; flex-direction: column; background: #F7F6F3; overflow: hidden;">
+  <nav aria-label="Main" style="display: flex; align-items: center; gap: 28px; height: 60px; flex-shrink: 0; padding: 0 64px; background: #FFFFFF; border-bottom: 1px solid #E3E1DC;">
+    <span style="font-family: 'Inter Tight', sans-serif; font-size: 17px; font-weight: 700;">Rooms</span>
+    <div style="display: flex; gap: 4px; height: 100%;">
+      <a href="#" style="display: flex; align-items: center; padding: 0 12px; font-size: 14px; font-weight: 500; color: #5B616B;">Find a room</a>
+      <a href="#" style="display: flex; align-items: center; padding: 0 12px; font-size: 14px; font-weight: 500; color: #5B616B;">My bookings</a>
+      <span style="width: 1px; margin: 18px 8px; background: #E3E1DC;"></span>
+      <a href="#" style="display: flex; align-items: center; padding: 0 12px; font-size: 14px; font-weight: 500; color: #5B616B;">All bookings</a>
+      <a href="#" style="display: flex; align-items: center; padding: 0 12px; font-size: 14px; font-weight: 500; color: #5B616B;">Review</a>
+      <a href="#" style="display: flex; align-items: center; padding: 0 12px; font-size: 14px; font-weight: 500; color: #5B616B;">Rooms</a>
+      <a href="#" style="display: flex; align-items: center; padding: 0 12px; font-size: 14px; font-weight: 500; color: #5B616B;">People</a>
+      <a href="#" aria-current="page" style="display: flex; align-items: center; padding: 0 12px; font-size: 14px; font-weight: 600; box-shadow: inset 0 -2px 0 #C2410C;">Import</a>
+    </div>
+    <div style="flex-grow: 1;"></div>
+    <button type="button" style="display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 10px 0 6px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 999px; font-size: 14px; font-weight: 500; color: #1F2328;"><span style="width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; background: #1F2328; color: #FFFFFF; border-radius: 999px; font-size: 12px; font-weight: 600;">MK</span>Marko Kovač · Admin</button>
+  </nav>
+
+  <div style="flex-grow: 1; display: flex; gap: 48px; padding: 32px 64px; min-height: 0;">
+    <div style="width: 340px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px;">
+      <h1 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 29px; font-weight: 700;">Import bookings</h1>
+      <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #5B616B;">A one-off import of the spreadsheet's bookings for the first week. Every row is checked against the same rules as a normal booking.</p>
+      <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0;">
+        <li style="display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid #E3E1DC;"><span style="width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; background: #1F2328; color: #FFFFFF; border-radius: 999px; font-size: 12px; font-weight: 600;">1</span><span style="display: flex; flex-direction: column;"><span style="font-size: 14px; font-weight: 600;">Add people first</span><span style="font-size: 12px; color: #5B616B;">Rows match people by email.</span></span></li>
+        <li style="display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid #E3E1DC;"><span style="width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; background: #1F2328; color: #FFFFFF; border-radius: 999px; font-size: 12px; font-weight: 600;">2</span><span style="display: flex; flex-direction: column;"><span style="font-size: 14px; font-weight: 600;">Upload the CSV</span><span style="font-size: 12px; color: #5B616B;">room, person_email, date, start, end, attendees</span></span></li>
+        <li style="display: flex; gap: 12px; padding: 12px 0;"><span style="width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; background: #C2410C; color: #FFFFFF; border-radius: 999px; font-size: 12px; font-weight: 600;">3</span><span style="display: flex; flex-direction: column;"><span style="font-size: 14px; font-weight: 600;">Review the result</span><span style="font-size: 12px; color: #5B616B;">Fix rejected rows and import them again.</span></span></li>
+      </ol>
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 8px;"><span style="font-size: 12px; color: #5B616B;">Import window</span><span style="font-size: 14px; font-weight: 600;">Mon 12 – Fri 16 October</span><span style="font-size: 12px; color: #5B616B;">5 working days from go-live</span></div>
+    </div>
+
+    <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 16px; min-width: 0;">
+      <div style="display: flex; align-items: center; gap: 16px; padding: 18px 20px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px;">
+        <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 14px; font-weight: 600;">rooms-week-42.csv · 24 rows</span><span style="font-size: 12px; color: #5B616B;">Imported Mon 12 Oct 07:42 by Marko Kovač</span></div>
+        <span style="font-size: 20px; font-weight: 600;">21</span><span style="font-size: 12px; color: #5B616B; margin-right: 12px;">imported</span>
+        <span style="font-size: 20px; font-weight: 600; color: #B91C1C;">3</span><span style="font-size: 12px; color: #5B616B;">rejected</span>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: space-between;"><h2 style="margin: 0; font-size: 17px; font-weight: 600;">Rejected rows</h2><div style="display: flex; gap: 8px;"><button type="button" style="height: 36px; padding: 0 14px; background: #FFFFFF; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 14px; font-weight: 600;">Download report (.csv)</button><button type="button" style="height: 36px; padding: 0 14px; background: #C2410C; color: #FFFFFF; border: 0; border-radius: 6px; font-size: 14px; font-weight: 600;">Upload corrected rows</button></div></div>
+      <div style="background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px; overflow: hidden;">
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead><tr><th>Row</th><th>Room</th><th>Person</th><th>Date</th><th>Time</th><th>People</th><th>Why it was rejected</th></tr></thead>
+          <tbody>
+            <tr><td>7</td><td>Board</td><td>sara.hodzic@…</td><td>2026-10-13</td><td>09:00–10:30</td><td>8</td><td style="color: #991B1B;">Overlaps row 4 (Board 09:30–10:30, imported). The earlier row was kept.</td></tr>
+            <tr><td>12</td><td>Team</td><td>j.kraus@company.example</td><td>2026-10-14</td><td>11:00–12:00</td><td>4</td><td style="color: #991B1B;">No active person with this email. Add them under People, then re-upload.</td></tr>
+            <tr><td>19</td><td>Team</td><td>ivan.petrovic@…</td><td>2026-10-15</td><td>14:10–15:00</td><td>5</td><td style="color: #991B1B;">Start 14:10 isn't on the 15-minute grid.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin: 0; font-size: 12px; line-height: 1.6; color: #5B616B;">Rows are checked in date and time order per person, so a 4th upcoming booking for someone is rejected. Rows already imported are skipped on re-upload. The report is cleared once you mark the import as settled.</p>
+      <button type="button" style="align-self: flex-start; height: 36px; padding: 0 14px; background: transparent; border: 0; font-size: 14px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; color: #1F2328;">Mark import as settled</button>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

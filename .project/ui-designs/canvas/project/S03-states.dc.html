@@ -1,0 +1,86 @@
+<!-- @dsCard group="Screens 03 Admin" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Admin — confirms, blocks and states</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Inter+Tight:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1F2328;background:#F7F6F3;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+button{font-family:inherit}
+button:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(194,65,12,.35)}
+@keyframes pulse{0%{opacity:.55}50%{opacity:1}100%{opacity:.55}}
+</style>
+</helmet>
+<div style="width: 1440px; height: 820px; box-sizing: border-box; padding: 48px 64px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; background: #F7F6F3;">
+  <div style="display: flex; flex-direction: column; gap: 12px;">
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B;">Take room out of use (modal)</span>
+    <div style="height: 360px; border-radius: 12px; background: rgba(31,35,40,.32); display: flex; align-items: center; justify-content: center;">
+      <div role="alertdialog" aria-modal="true" aria-labelledby="rm-title" style="width: 360px; box-sizing: border-box; padding: 24px; display: flex; flex-direction: column; gap: 12px; background: #FFFFFF; border-radius: 12px; box-shadow: 0 30px 70px rgba(31,35,40,.28);">
+        <h3 id="rm-title" style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 20px; font-weight: 600;">Take Team out of use?</h3>
+        <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #5B616B;">9 future bookings will be cancelled. The people who booked them will see “cancelled by admin”. A meeting in progress now is left alone.</p>
+        <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 4px;">
+          <button type="button" style="height: 40px; padding: 0 16px; background: #FFFFFF; color: #1F2328; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 14px; font-weight: 600;">Keep in use</button>
+          <button type="button" style="height: 40px; padding: 0 16px; background: #B91C1C; color: #FFFFFF; border: 0; border-radius: 6px; font-size: 14px; font-weight: 600;">Take out of use</button>
+        </div>
+      </div>
+    </div>
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B; margin-top: 8px;">Table loading</span>
+    <div aria-busy="true" style="display: flex; flex-direction: column; gap: 10px; padding: 16px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px;">
+      <div style="height: 12px; width: 70%; border-radius: 999px; background: #EFEDE8; animation: pulse 1.4s ease-in-out infinite;"></div>
+      <div style="height: 12px; width: 85%; border-radius: 999px; background: #EFEDE8; animation: pulse 1.4s ease-in-out infinite;"></div>
+      <div style="height: 12px; width: 60%; border-radius: 999px; background: #EFEDE8; animation: pulse 1.4s ease-in-out infinite;"></div>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 12px;">
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B;">Remove a person (modal)</span>
+    <div style="height: 360px; border-radius: 12px; background: rgba(31,35,40,.32); display: flex; align-items: center; justify-content: center;">
+      <div role="alertdialog" aria-modal="true" aria-labelledby="pp-title" style="width: 360px; box-sizing: border-box; padding: 24px; display: flex; flex-direction: column; gap: 12px; background: #FFFFFF; border-radius: 12px; box-shadow: 0 30px 70px rgba(31,35,40,.28);">
+        <h3 id="pp-title" style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 20px; font-weight: 600;">Deactivate Sara Hodžić?</h3>
+        <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #5B616B;">Their 3 future bookings will be cancelled as “cancelled by admin” — not late. They won't appear in the pick-a-user list. Past bookings stay for review.</p>
+        <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 4px;">
+          <button type="button" style="height: 40px; padding: 0 16px; background: #FFFFFF; color: #1F2328; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 14px; font-weight: 600;">Keep active</button>
+          <button type="button" style="height: 40px; padding: 0 16px; background: #B91C1C; color: #FFFFFF; border: 0; border-radius: 6px; font-size: 14px; font-weight: 600;">Deactivate</button>
+        </div>
+      </div>
+    </div>
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B; margin-top: 8px;">Last admin blocked</span>
+    <div role="alert" style="display: flex; gap: 12px; align-items: flex-start; padding: 16px; background: #FEF2F2; border: 1px solid #FCA5A5; border-radius: 8px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B91C1C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v6M12 17h.01"></path></svg>
+      <div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-size: 14px; font-weight: 600; color: #991B1B;">Nina Horvat is the only active admin</span><span style="font-size: 12px; line-height: 1.5; color: #7F1D1D;">Make someone else an admin first, then change Nina's role or deactivate Nina.</span></div>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 12px;">
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B;">Import file not readable</span>
+    <div role="alert" style="display: flex; gap: 12px; align-items: flex-start; padding: 16px; background: #FEF2F2; border: 1px solid #FCA5A5; border-radius: 8px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B91C1C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v6M12 17h.01"></path></svg>
+      <div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-size: 14px; font-weight: 600; color: #991B1B;">Nothing was imported</span><span style="font-size: 12px; line-height: 1.5; color: #7F1D1D;">The first row must be exactly: room, person_email, date, start, end, attendees. This file's header has “email” instead of “person_email”.</span></div>
+    </div>
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B; margin-top: 8px;">Review — nothing to review</span>
+    <div style="display: flex; flex-direction: column; gap: 8px; padding: 24px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px;">
+      <span style="font-size: 17px; font-weight: 600;">No late cancellations or no-shows</span>
+      <span style="font-size: 14px; line-height: 1.55; color: #5B616B;">Nothing in the last 30 days. Try a longer period.</span>
+    </div>
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B; margin-top: 8px;">All bookings — no match</span>
+    <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start; padding: 24px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px;">
+      <span style="font-size: 17px; font-weight: 600;">No bookings match these filters</span>
+      <span style="font-size: 14px; line-height: 1.55; color: #5B616B;">Board · No-show · this week</span>
+      <button type="button" style="margin-top: 4px; height: 40px; padding: 0 16px; background: #FFFFFF; color: #1F2328; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 14px; font-weight: 600;">Clear filters</button>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":820}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

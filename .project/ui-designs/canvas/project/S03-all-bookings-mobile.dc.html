@@ -1,0 +1,53 @@
+<!-- @dsCard group="Screens 03 Admin" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>All bookings — admin mobile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Inter+Tight:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1F2328;background:#F7F6F3;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+a{color:#1F2328;text-decoration:none}
+button{font-family:inherit}
+button:focus-visible,a:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(194,65,12,.35)}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #F7F6F3;">
+  <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 14px; padding: 32px 20px 16px; overflow: hidden;">
+    <a href="#" style="display: inline-flex; align-items: center; gap: 4px; font-size: 14px; font-weight: 600; color: #5B616B;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg>Admin</a>
+    <div style="display: flex; align-items: baseline; justify-content: space-between;"><h1 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 24px; font-weight: 700;">All bookings</h1><span style="font-size: 12px; color: #5B616B;">Tue 6 Oct</span></div>
+    <div style="display: flex; gap: 8px; overflow: hidden;">
+      <span style="display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 6px 0 12px; background: #1F2328; color: #FFFFFF; border-radius: 999px; font-size: 13px; font-weight: 500; white-space: nowrap;">Today <button type="button" aria-label="Remove date filter" style="width: 24px; height: 24px; background: transparent; border: 0; color: #FFFFFF; font-size: 14px;">×</button></span>
+      <button type="button" style="height: 36px; padding: 0 12px; background: #FFFFFF; border: 1px dashed #C9C6BF; border-radius: 999px; font-size: 13px; font-weight: 500; color: #5B616B; white-space: nowrap;">+ Room</button>
+      <button type="button" style="height: 36px; padding: 0 12px; background: #FFFFFF; border: 1px dashed #C9C6BF; border-radius: 999px; font-size: 13px; font-weight: 500; color: #5B616B; white-space: nowrap;">+ Person</button>
+      <button type="button" style="height: 36px; padding: 0 12px; background: #FFFFFF; border: 1px dashed #C9C6BF; border-radius: 999px; font-size: 13px; font-weight: 500; color: #5B616B; white-space: nowrap;">+ Status</button>
+    </div>
+    <div style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px;">
+      <a href="#" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border-bottom: 1px solid #EFEDE8;"><span style="display: flex; flex-direction: column;"><span style="font-size: 16px; font-weight: 600;">09:00–10:00 · Board</span><span style="font-size: 12px; color: #5B616B;">Ivan Petrović · 9 people</span></span><span style="display: inline-flex; height: 24px; align-items: center; padding: 0 10px; background: #EFEDE8; border-radius: 999px; font-size: 12px; font-weight: 600;">Done</span></a>
+      <a href="#" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border-bottom: 1px solid #EFEDE8;"><span style="display: flex; flex-direction: column;"><span style="font-size: 16px; font-weight: 600;">10:00–11:30 · Board</span><span style="font-size: 12px; color: #5B616B;">Sara Hodžić · 10 people</span></span><span style="display: inline-flex; height: 24px; align-items: center; padding: 0 10px; background: #FEF3C7; color: #92400E; border-radius: 999px; font-size: 12px; font-weight: 600;">No-show</span></a>
+      <a href="#" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border-bottom: 1px solid #EFEDE8;"><span style="display: flex; flex-direction: column;"><span style="font-size: 16px; font-weight: 600;">10:00–11:00 · Team</span><span style="font-size: 12px; color: #5B616B;">Tomas Berg · 5 people</span></span><span style="display: inline-flex; height: 24px; align-items: center; padding: 0 10px; background: #E7F5EC; color: #166534; border-radius: 999px; font-size: 12px; font-weight: 600;">Checked in</span></a>
+      <a href="#" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border-bottom: 1px solid #EFEDE8;"><span style="display: flex; flex-direction: column;"><span style="font-size: 16px; font-weight: 600;">12:00–13:00 · Board</span><span style="font-size: 12px; color: #5B616B;">Petra Zorić · 7 people</span></span><span style="display: inline-flex; height: 24px; align-items: center; padding: 0 10px; border: 1.5px solid #1F2328; border-radius: 999px; font-size: 12px; font-weight: 600;">Confirmed</span></a>
+      <a href="#" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border-bottom: 1px solid #EFEDE8;"><span style="display: flex; flex-direction: column;"><span style="font-size: 16px; font-weight: 600;">14:00–15:30 · Team</span><span style="font-size: 12px; color: #5B616B;">Lena Novak · 4 people</span></span><span style="display: inline-flex; height: 24px; align-items: center; padding: 0 10px; border: 1.5px solid #1F2328; border-radius: 999px; font-size: 12px; font-weight: 600;">Confirmed</span></a>
+      <a href="#" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px;"><span style="display: flex; flex-direction: column;"><span style="font-size: 16px; font-weight: 600;">16:00–18:00 · Board</span><span style="font-size: 12px; color: #5B616B;">Nina Horvat · 12 people</span></span><span style="display: inline-flex; height: 24px; align-items: center; padding: 0 10px; border: 1.5px solid #1F2328; border-radius: 999px; font-size: 12px; font-weight: 600;">Confirmed</span></a>
+    </div>
+    <button type="button" style="height: 48px; background: #C2410C; color: #FFFFFF; border: 0; border-radius: 6px; font-size: 16px; font-weight: 600;">Book for someone</button>
+  </div>
+  <nav aria-label="Main" style="display: flex; height: 72px; box-sizing: border-box; padding-bottom: 8px; background: #FFFFFF; border-top: 1px solid #E3E1DC;">
+    <a href="#" style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500; color: #5B616B;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>Find</a>
+    <a href="#" style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500; color: #5B616B;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M8 3v4M16 3v4M4 10h16"></path></svg>My bookings</a>
+    <a href="#" aria-current="page" style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 600; color: #C2410C;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"></path></svg>Admin</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

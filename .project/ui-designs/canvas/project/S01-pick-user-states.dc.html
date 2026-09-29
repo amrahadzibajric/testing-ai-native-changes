@@ -1,0 +1,55 @@
+<!-- @dsCard group="Screens 01 Entry" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pick a user — states</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Inter+Tight:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1F2328;background:#F7F6F3;-webkit-font-smoothing:antialiased}
+button,input{font-family:inherit}
+button:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(194,65,12,.35)}
+@keyframes pulse{0%{opacity:.55}50%{opacity:1}100%{opacity:.55}}
+</style>
+</helmet>
+<div style="width: 1280px; height: 520px; box-sizing: border-box; padding: 48px 64px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; background: #F7F6F3;">
+  <div style="display: flex; flex-direction: column; gap: 12px;">
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B;">Loading</span>
+    <div aria-busy="true" style="display: flex; flex-direction: column; gap: 1px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px; padding: 12px 20px;">
+      <div style="display: flex; gap: 14px; align-items: center; height: 56px;"><div style="width: 32px; height: 32px; border-radius: 999px; background: #EFEDE8; animation: pulse 1.4s ease-in-out infinite;"></div><div style="width: 160px; height: 12px; border-radius: 999px; background: #EFEDE8; animation: pulse 1.4s ease-in-out infinite;"></div></div>
+      <div style="display: flex; gap: 14px; align-items: center; height: 56px;"><div style="width: 32px; height: 32px; border-radius: 999px; background: #EFEDE8; animation: pulse 1.4s ease-in-out infinite;"></div><div style="width: 200px; height: 12px; border-radius: 999px; background: #EFEDE8; animation: pulse 1.4s ease-in-out infinite;"></div></div>
+      <div style="display: flex; gap: 14px; align-items: center; height: 56px;"><div style="width: 32px; height: 32px; border-radius: 999px; background: #EFEDE8; animation: pulse 1.4s ease-in-out infinite;"></div><div style="width: 140px; height: 12px; border-radius: 999px; background: #EFEDE8; animation: pulse 1.4s ease-in-out infinite;"></div></div>
+      <div style="display: flex; gap: 14px; align-items: center; height: 56px;"><div style="width: 32px; height: 32px; border-radius: 999px; background: #EFEDE8; animation: pulse 1.4s ease-in-out infinite;"></div><div style="width: 180px; height: 12px; border-radius: 999px; background: #EFEDE8; animation: pulse 1.4s ease-in-out infinite;"></div></div>
+    </div>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 12px;">
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B;">No match</span>
+    <div style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 14px; background: #FFFFFF; border: 1px solid #C9C6BF; border-radius: 6px;"><input aria-label="Search people" value="Jelena" style="flex-grow: 1; border: 0; font-size: 14px; color: #1F2328;"></div>
+    <div style="display: flex; flex-direction: column; gap: 8px; padding: 28px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px;">
+      <span style="font-size: 17px; font-weight: 600;">No one called “Jelena”</span>
+      <span style="font-size: 14px; line-height: 1.55; color: #5B616B;">Only active people are listed. An office admin can add you under People.</span>
+      <button type="button" style="align-self: flex-start; height: 40px; padding: 0 16px; margin-top: 8px; background: #FFFFFF; color: #1F2328; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 14px; font-weight: 600;">Clear search</button>
+    </div>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 12px;">
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B;">Error</span>
+    <div role="alert" style="display: flex; flex-direction: column; gap: 8px; padding: 28px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px;">
+      <span style="font-size: 17px; font-weight: 600;">Couldn't load the list of people</span>
+      <span style="font-size: 14px; line-height: 1.55; color: #5B616B;">The app couldn't reach its data. Check it's still running, then try again.</span>
+      <button type="button" style="align-self: flex-start; height: 40px; padding: 0 16px; margin-top: 8px; background: #FFFFFF; color: #1F2328; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 14px; font-weight: 600;">Try again</button>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":520}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

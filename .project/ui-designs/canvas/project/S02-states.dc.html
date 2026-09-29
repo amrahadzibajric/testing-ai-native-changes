@@ -1,0 +1,78 @@
+<!-- @dsCard group="Screens 02 Booking" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Booking — states and rule edges</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Inter+Tight:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1F2328;background:#F7F6F3;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+button{font-family:inherit}
+button:focus-visible,a:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(194,65,12,.35)}
+@keyframes pulse{0%{opacity:.55}50%{opacity:1}100%{opacity:.55}}
+</style>
+</helmet>
+<div style="width: 1440px; height: 760px; box-sizing: border-box; padding: 48px 64px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; background: #F7F6F3;">
+  <div style="display: flex; flex-direction: column; gap: 12px;">
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B;">Board loading</span>
+    <div aria-busy="true" style="display: flex; flex-direction: column; gap: 12px; padding: 20px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px;">
+      <div style="height: 12px; width: 50%; border-radius: 999px; background: #EFEDE8; animation: pulse 1.4s ease-in-out infinite;"></div>
+      <div style="display: flex; gap: 12px;"><div style="width: 80px; height: 44px; border-radius: 8px; background: #EFEDE8; animation: pulse 1.4s ease-in-out infinite;"></div><div style="flex-grow: 1; height: 44px; border-radius: 8px; background: #F3F2EE; animation: pulse 1.4s ease-in-out infinite;"></div></div>
+      <div style="display: flex; gap: 12px;"><div style="width: 80px; height: 44px; border-radius: 8px; background: #EFEDE8; animation: pulse 1.4s ease-in-out infinite;"></div><div style="flex-grow: 1; height: 44px; border-radius: 8px; background: #F3F2EE; animation: pulse 1.4s ease-in-out infinite;"></div></div>
+      <div style="display: flex; gap: 12px;"><div style="width: 80px; height: 44px; border-radius: 8px; background: #EFEDE8; animation: pulse 1.4s ease-in-out infinite;"></div><div style="flex-grow: 1; height: 44px; border-radius: 8px; background: #F3F2EE; animation: pulse 1.4s ease-in-out infinite;"></div></div>
+    </div>
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B; margin-top: 12px;">No room fits</span>
+    <div style="display: flex; flex-direction: column; gap: 8px; padding: 24px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px;">
+      <span style="font-size: 17px; font-weight: 600;">No room fits 14 people</span>
+      <span style="font-size: 14px; line-height: 1.55; color: #5B616B;">Board is the largest room and fits 12.</span>
+      <button type="button" style="align-self: flex-start; margin-top: 6px; height: 40px; padding: 0 16px; background: #FFFFFF; color: #1F2328; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 14px; font-weight: 600;">Show all rooms</button>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 12px;">
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B;">Booking limit reached</span>
+    <div role="alert" style="display: flex; gap: 12px; align-items: flex-start; padding: 16px; background: #FEF2F2; border: 1px solid #FCA5A5; border-radius: 8px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B91C1C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v6M12 17h.01"></path></svg>
+      <div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-size: 14px; font-weight: 600; color: #991B1B;">You already have 3 upcoming bookings</span><span style="font-size: 12px; line-height: 1.5; color: #7F1D1D;">Cancel one, or wait until one has started, then book again.</span><a href="#" style="font-size: 12px; font-weight: 600; color: #991B1B;">Go to My bookings</a></div>
+    </div>
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B; margin-top: 12px;">Slot taken meanwhile</span>
+    <div role="alert" style="display: flex; gap: 12px; align-items: flex-start; padding: 16px; background: #FEF2F2; border: 1px solid #FCA5A5; border-radius: 8px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B91C1C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v6M12 17h.01"></path></svg>
+      <div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-size: 14px; font-weight: 600; color: #991B1B;">Someone booked Board 11:00–12:00 a moment ago</span><span style="font-size: 12px; line-height: 1.5; color: #7F1D1D;">The board has been refreshed. Your details are kept — pick another time.</span></div>
+    </div>
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B; margin-top: 12px;">Released as no-show</span>
+    <div style="display: flex; gap: 12px; align-items: flex-start; padding: 16px; background: #FFFBEB; border: 1px solid #FCD34D; border-radius: 8px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#92400E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></svg>
+      <div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-size: 14px; font-weight: 600; color: #78350F;">Team 14:00–15:30 was released at 14:15</span><span style="font-size: 12px; line-height: 1.5; color: #78350F;">Nobody checked in within 15 minutes, so it's marked as a no-show and the room is free for others.</span></div>
+    </div>
+  </div>
+
+  <div style="position: relative; display: flex; flex-direction: column; gap: 12px;">
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B;">Cancel — late warning (modal)</span>
+    <div style="position: relative; height: 420px; border-radius: 12px; background: rgba(31,35,40,.32); display: flex; align-items: center; justify-content: center;">
+      <div role="alertdialog" aria-modal="true" aria-labelledby="cx-title" style="width: 360px; box-sizing: border-box; padding: 24px; display: flex; flex-direction: column; gap: 14px; background: #FFFFFF; border-radius: 12px; box-shadow: 0 30px 70px rgba(31,35,40,.28);">
+        <h3 id="cx-title" style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 20px; font-weight: 600;">Cancel Team at 14:00?</h3>
+        <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #5B616B;">It starts in 1 h 20 min, so this will be recorded as a late cancellation. Admins can see late cancellations.</p>
+        <p style="margin: 0; font-size: 12px; line-height: 1.55; color: #5B616B;">Need a different time instead? Editing is never counted as late.</p>
+        <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 4px;">
+          <button type="button" style="height: 40px; padding: 0 16px; background: #FFFFFF; color: #1F2328; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 14px; font-weight: 600;">Keep booking</button>
+          <button type="button" style="height: 40px; padding: 0 16px; background: #B91C1C; color: #FFFFFF; border: 0; border-radius: 6px; font-size: 14px; font-weight: 600;">Cancel booking</button>
+        </div>
+      </div>
+    </div>
+    <span style="font-size: 12px; color: #5B616B;">Destructive confirm uses danger red, not the accent — the accent stays reserved for booking.</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":760}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

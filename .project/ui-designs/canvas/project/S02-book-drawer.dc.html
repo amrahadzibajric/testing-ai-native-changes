@@ -1,0 +1,70 @@
+<!-- @dsCard group="Screens 02 Booking" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Book a room — web drawer</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Inter+Tight:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1F2328;background:#F7F6F3;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+button,input,select{font-family:inherit;transition:border-color .14s,box-shadow .14s}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(194,65,12,.35)}
+label{font-size:12px;font-weight:600;color:#1F2328}
+@keyframes drawerIn{from{transform:translateX(24px);opacity:0}to{transform:none;opacity:1}}
+</style>
+</helmet>
+<div style="position: relative; width: 1440px; height: 900px; overflow: hidden; background: #F7F6F3;">
+  <div style="position: absolute; inset: 0; display: flex; flex-direction: column; gap: 24px; padding: 100px 64px; box-sizing: border-box;">
+    <div style="height: 40px; width: 420px; background: #EFEDE8; border-radius: 8px;"></div>
+    <div style="height: 300px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px;"></div>
+  </div>
+  <div style="position: absolute; inset: 0; background: rgba(31,35,40,.32);"></div>
+
+  <aside role="dialog" aria-modal="true" aria-labelledby="bk-title" style="position: absolute; top: 0; right: 0; width: 460px; height: 900px; box-sizing: border-box; padding: 32px; display: flex; flex-direction: column; gap: 20px; background: #FFFFFF; border-radius: 12px 0 0 12px; box-shadow: -16px 0 48px rgba(31,35,40,.20); animation: drawerIn .18s ease-out;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <span style="font-size: 12px; color: #5B616B;">New booking</span>
+        <h2 id="bk-title" style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 24px; font-weight: 600;">Book Board</h2>
+      </div>
+      <button type="button" aria-label="Close" style="width: 36px; height: 36px; background: transparent; border: 0; font-size: 20px; color: #5B616B;">×</button>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 6px;"><label for="b-room">Room</label><select id="b-room" style="height: 44px; padding: 0 12px; background: #FFFFFF; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 14px; color: #1F2328;"><option>Board · fits 12</option></select></div>
+    <div style="display: flex; flex-direction: column; gap: 6px;"><label for="b-date">Date</label><input id="b-date" value="Tuesday 6 October 2026" style="height: 44px; padding: 0 12px; background: #FFFFFF; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 14px; color: #1F2328;"></div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
+      <div style="display: flex; flex-direction: column; gap: 6px;"><label for="b-start">Start</label><select id="b-start" style="height: 44px; padding: 0 12px; background: #FFFFFF; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 14px; color: #1F2328;"><option>10:45</option></select></div>
+      <div style="display: flex; flex-direction: column; gap: 6px;"><label for="b-end">End</label><select id="b-end" style="height: 44px; padding: 0 12px; background: #FFFFFF; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 14px; color: #1F2328;"><option>11:45</option></select></div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 6px;"><label for="b-att">People coming</label>
+      <div style="display: flex; height: 44px; width: 160px; border: 1px solid #C9C6BF; border-radius: 6px; overflow: hidden;"><button type="button" aria-label="Fewer people" style="width: 44px; background: #FFFFFF; border: 0; border-right: 1px solid #E3E1DC; font-size: 18px;">−</button><input id="b-att" value="8" style="flex-grow: 1; width: 40px; text-align: center; border: 0; font-size: 14px; color: #1F2328;"><button type="button" aria-label="More people" style="width: 44px; background: #FFFFFF; border: 0; border-left: 1px solid #E3E1DC; font-size: 18px;">+</button></div>
+      <span style="font-size: 12px; color: #5B616B;">Board fits up to 12.</span>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px; padding: 16px; background: #F7F6F3; border-radius: 8px;">
+      <div style="display: flex; justify-content: space-between; font-size: 14px;"><span style="font-weight: 600;">10:45–11:45</span><span style="color: #5B616B;">1 h</span></div>
+      <span style="font-size: 12px; line-height: 1.5; color: #5B616B;">Free — the 10:00 booking was released as a no-show. Check in between 10:35 and 11:00, or the room is released again.</span>
+    </div>
+
+    <div style="flex-grow: 1;"></div>
+    <div style="display: flex; flex-direction: column; gap: 12px; padding-top: 16px; border-top: 1px solid #EFEDE8;">
+      <span style="font-size: 12px; color: #5B616B;">This will be your 3rd of 3 upcoming bookings.</span>
+      <div style="display: flex; gap: 12px;">
+        <button type="button" style="flex-grow: 1; height: 44px; background: #C2410C; color: #FFFFFF; border: 0; border-radius: 6px; font-size: 14px; font-weight: 600;">Book room</button>
+        <button type="button" style="height: 44px; padding: 0 18px; background: #FFFFFF; color: #1F2328; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 14px; font-weight: 600;">Cancel</button>
+      </div>
+    </div>
+  </aside>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

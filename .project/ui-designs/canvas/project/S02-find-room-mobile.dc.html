@@ -1,0 +1,73 @@
+<!-- @dsCard group="Screens 02 Booking" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Find a room — mobile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Inter+Tight:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1F2328;background:#F7F6F3;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+a{color:#1F2328;text-decoration:none}
+button{font-family:inherit}
+button:focus-visible,a:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(194,65,12,.35)}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #F7F6F3;">
+  <div style="display: flex; flex-direction: column; gap: 14px; padding: 40px 20px 16px;">
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+      <button type="button" aria-label="Previous day" style="width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; background: #FFFFFF; border: 1px solid #C9C6BF; border-radius: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F2328" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg></button>
+      <div style="display: flex; flex-direction: column; align-items: center;"><h1 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 20px; font-weight: 700;">Tue 6 October</h1><span style="font-size: 12px; color: #5B616B;">Today · now 10:40</span></div>
+      <button type="button" aria-label="Next day" style="width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; background: #FFFFFF; border: 1px solid #C9C6BF; border-radius: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F2328" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></button>
+    </div>
+    <div role="tablist" aria-label="Room" style="display: flex; padding: 3px; background: #EFEDE8; border-radius: 999px; gap: 2px;">
+      <button type="button" role="tab" style="flex-grow: 1; height: 38px; background: transparent; border: 0; border-radius: 999px; font-size: 14px; font-weight: 600; color: #5B616B;">Focus · 2</button>
+      <button type="button" role="tab" style="flex-grow: 1; height: 38px; background: transparent; border: 0; border-radius: 999px; font-size: 14px; font-weight: 600; color: #5B616B;">Team · 6</button>
+      <button type="button" role="tab" aria-selected="true" style="flex-grow: 1; height: 38px; background: #FFFFFF; border: 0; border-radius: 999px; font-size: 14px; font-weight: 600; color: #1F2328; box-shadow: 0 1px 2px rgba(31,35,40,.12);">Board · 12</button>
+    </div>
+  </div>
+
+  <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px; padding: 0 20px;">
+    <div style="display: flex; gap: 12px; align-items: stretch;">
+      <span style="width: 48px; padding-top: 12px; font-size: 12px; color: #5B616B;">10:00</span>
+      <div style="flex-grow: 1; display: flex; align-items: center; height: 48px; padding: 0 14px; background: repeating-linear-gradient(135deg, #EFEDE8 0, #EFEDE8 4px, #F7F6F3 4px, #F7F6F3 10px); border-radius: 8px; font-size: 12px; color: #5B616B;">Past</div>
+    </div>
+    <div style="display: flex; gap: 12px; align-items: stretch;">
+      <span style="width: 48px; padding-top: 16px; font-size: 12px; font-weight: 600; color: #C2410C;">10:45</span>
+      <button type="button" style="flex-grow: 1; display: flex; align-items: center; justify-content: space-between; height: 64px; padding: 0 16px; background: #FFFFFF; border: 1.5px dashed #C2410C; border-radius: 8px; text-align: left;"><span style="display: flex; flex-direction: column;"><span style="font-size: 16px; font-weight: 600;">Free 10:45–12:00</span><span style="font-size: 12px; color: #5B616B;">Up to 1 h 15 min</span></span><span style="font-size: 14px; font-weight: 600; color: #C2410C;">Book</span></button>
+    </div>
+    <div style="display: flex; gap: 12px; align-items: stretch;">
+      <span style="width: 48px; padding-top: 12px; font-size: 12px; color: #5B616B;">12:00</span>
+      <div style="flex-grow: 1; display: flex; align-items: center; height: 48px; padding: 0 14px; background: #EFEDE8; border: 1px solid #D6D3CC; border-radius: 8px; font-size: 14px; font-weight: 600;">Booked · 12:00–13:00</div>
+    </div>
+    <div style="display: flex; gap: 12px; align-items: stretch;">
+      <span style="width: 48px; padding-top: 16px; font-size: 12px; color: #5B616B;">13:00</span>
+      <button type="button" style="flex-grow: 1; display: flex; align-items: center; justify-content: space-between; height: 64px; padding: 0 16px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 8px; text-align: left;"><span style="display: flex; flex-direction: column;"><span style="font-size: 16px; font-weight: 600;">Free 13:00–16:00</span><span style="font-size: 12px; color: #5B616B;">Up to 3 h</span></span><span style="font-size: 14px; font-weight: 600; color: #1F2328;">Book</span></button>
+    </div>
+    <div style="display: flex; gap: 12px; align-items: stretch;">
+      <span style="width: 48px; padding-top: 12px; font-size: 12px; color: #5B616B;">16:00</span>
+      <div style="flex-grow: 1; display: flex; align-items: center; height: 48px; padding: 0 14px; background: #EFEDE8; border: 1px solid #D6D3CC; border-radius: 8px; font-size: 14px; font-weight: 600;">Booked · 16:00–18:00</div>
+    </div>
+    <div style="display: flex; gap: 12px; align-items: stretch;">
+      <span style="width: 48px; padding-top: 16px; font-size: 12px; color: #5B616B;">18:00</span>
+      <button type="button" style="flex-grow: 1; display: flex; align-items: center; justify-content: space-between; height: 64px; padding: 0 16px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 8px; text-align: left;"><span style="display: flex; flex-direction: column;"><span style="font-size: 16px; font-weight: 600;">Free 18:00–20:00</span><span style="font-size: 12px; color: #5B616B;">Up to 2 h</span></span><span style="font-size: 14px; font-weight: 600; color: #1F2328;">Book</span></button>
+    </div>
+  </div>
+
+  <nav aria-label="Main" style="display: flex; height: 72px; box-sizing: border-box; padding-bottom: 8px; background: #FFFFFF; border-top: 1px solid #E3E1DC;">
+    <a href="#" aria-current="page" style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 600; color: #C2410C;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>Find</a>
+    <a href="#" style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500; color: #5B616B;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M8 3v4M16 3v4M4 10h16"></path></svg>My bookings</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

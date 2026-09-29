@@ -1,0 +1,30 @@
+# .NET build output
+bin/
+obj/
+*.user
+*.suo
+.vs/
+.vscode/
+TestResults/
+*.trx
+coverage*/
+
+# Local SQLite databases (POC data store, ADR-0025)
+*.db
+*.db-shm
+*.db-wal
+
+# Local settings and secrets
+appsettings.*.local.json
+.claude/settings.local.json
+.env
+.env.*
+
+# Playwright
+playwright-report/
+test-results/
+.playwright/
+
+# OS
+Thumbs.db
+.DS_Store

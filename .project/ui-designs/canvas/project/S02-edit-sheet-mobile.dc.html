@@ -1,0 +1,48 @@
+<!-- @dsCard group="Screens 02 Booking" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Edit booking — mobile sheet</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Inter+Tight:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1F2328;background:#F7F6F3;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+button,input,select{font-family:inherit}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(194,65,12,.35)}
+label{font-size:12px;font-weight:600;color:#1F2328}
+@keyframes sheetIn{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #F7F6F3;">
+  <div style="position: absolute; inset: 0; padding: 40px 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px;">
+    <div style="height: 28px; width: 180px; background: #EFEDE8; border-radius: 8px;"></div>
+    <div style="height: 200px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px;"></div>
+  </div>
+  <div style="position: absolute; inset: 0; background: rgba(31,35,40,.32);"></div>
+  <section role="dialog" aria-modal="true" aria-labelledby="ed-title" style="position: absolute; left: 0; right: 0; bottom: 0; box-sizing: border-box; padding: 12px 20px 28px; display: flex; flex-direction: column; gap: 16px; background: #FFFFFF; border-radius: 16px 16px 0 0; box-shadow: 0 -16px 48px rgba(31,35,40,.20); animation: sheetIn .18s ease-out;">
+    <div style="align-self: center; width: 40px; height: 4px; border-radius: 999px; background: #D6D3CC;"></div>
+    <div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 12px; color: #5B616B;">Edit booking · Wed 7 Oct</span><h2 id="ed-title" style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 20px; font-weight: 600;">Board · 09:00–10:00</h2></div>
+    <div style="display: flex; flex-direction: column; gap: 6px;"><label for="e-room">Room</label><select id="e-room" style="height: 48px; padding: 0 12px; background: #FFFFFF; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 16px; color: #1F2328;"><option>Board · fits 12</option></select></div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
+      <div style="display: flex; flex-direction: column; gap: 6px;"><label for="e-start">Start</label><select id="e-start" style="height: 48px; padding: 0 12px; background: #FFFFFF; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 16px; color: #1F2328;"><option>09:30</option></select></div>
+      <div style="display: flex; flex-direction: column; gap: 6px;"><label for="e-end">End</label><select id="e-end" style="height: 48px; padding: 0 12px; background: #FFFFFF; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 16px; color: #1F2328;"><option>10:30</option></select></div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 6px;"><label for="e-att">People coming</label><div style="display: flex; height: 48px; width: 170px; border: 1px solid #C9C6BF; border-radius: 6px; overflow: hidden;"><button type="button" aria-label="Fewer people" style="width: 48px; background: #FFFFFF; border: 0; border-right: 1px solid #E3E1DC; font-size: 18px;">−</button><input id="e-att" value="10" style="flex-grow: 1; width: 40px; text-align: center; border: 0; font-size: 16px; color: #1F2328;"><button type="button" aria-label="More people" style="width: 48px; background: #FFFFFF; border: 0; border-left: 1px solid #E3E1DC; font-size: 18px;">+</button></div></div>
+    <p style="margin: 0; font-size: 12px; line-height: 1.55; color: #5B616B;">Changes are checked against the same rules as a new booking. Editing never counts as a late cancellation, and doesn't use another of your 3 bookings.</p>
+    <button type="button" style="height: 48px; background: #C2410C; color: #FFFFFF; border: 0; border-radius: 6px; font-size: 16px; font-weight: 600;">Save changes</button>
+    <button type="button" style="height: 44px; background: transparent; color: #1F2328; border: 0; font-size: 14px; font-weight: 600;">Keep as it was</button>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

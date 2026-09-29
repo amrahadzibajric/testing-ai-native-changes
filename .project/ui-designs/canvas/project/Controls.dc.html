@@ -1,0 +1,91 @@
+<!-- @dsCard group="Controls" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Controls — buttons, inputs, chips</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Inter+Tight:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1F2328;background:#F7F6F3;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+::selection{background:rgba(194,65,12,.18)}
+button,input,select{font-family:inherit;transition:border-color .14s,box-shadow .14s,background-color .14s}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(194,65,12,.35)}
+label{font-size:12px;font-weight:600;color:#1F2328}
+</style>
+</helmet>
+<div style="width: 1280px; height: 1000px; box-sizing: border-box; padding: 56px 64px; display: flex; flex-direction: column; gap: 28px; background: #F7F6F3;">
+  <div style="display: flex; flex-direction: column; gap: 8px;">
+    <div style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B;">Controls</div>
+    <h1 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 29px; font-weight: 700;">One primary action per view</h1>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 16px; padding: 24px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px; box-shadow: 0 1px 2px rgba(31,35,40,.06);">
+    <div style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B;">Buttons · 40 px web, 44 px touch</div>
+    <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+      <button type="button" style="height: 40px; padding: 0 18px; background: #C2410C; color: #FFFFFF; border: 0; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer;">Book room</button>
+      <button type="button" style="height: 40px; padding: 0 18px; background: #9A3412; color: #FFFFFF; border: 0; border-radius: 6px; font-size: 14px; font-weight: 600;">Book room · pressed</button>
+      <button type="button" style="height: 40px; padding: 0 18px; background: #FFFFFF; color: #1F2328; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 14px; font-weight: 600;">Check in</button>
+      <button type="button" style="height: 40px; padding: 0 14px; background: transparent; color: #1F2328; border: 0; border-radius: 6px; font-size: 14px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px;">Edit time</button>
+      <button type="button" style="height: 40px; padding: 0 18px; background: #FFFFFF; color: #B91C1C; border: 1px solid #FCA5A5; border-radius: 6px; font-size: 14px; font-weight: 600;">Cancel booking</button>
+      <button type="button" disabled style="height: 40px; padding: 0 18px; background: #EFEDE8; color: #8B9097; border: 0; border-radius: 6px; font-size: 14px; font-weight: 600;">Check in (opens 13:50)</button>
+      <button type="button" style="height: 40px; padding: 0 18px; background: #C2410C; color: #FFFFFF; border: 0; border-radius: 6px; font-size: 14px; font-weight: 600; box-shadow: 0 0 0 3px rgba(194,65,12,.35);">Focused</button>
+      <button type="button" aria-label="Previous day" style="width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; background: #FFFFFF; border: 1px solid #C9C6BF; border-radius: 6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F2328" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg></button>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 16px; padding: 24px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px; box-shadow: 0 1px 2px rgba(31,35,40,.06);">
+    <div style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B;">Booking form fields</div>
+    <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px;">
+      <div style="display: flex; flex-direction: column; gap: 6px;"><label for="c-room">Room</label><select id="c-room" style="height: 40px; padding: 0 12px; background: #FFFFFF; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 14px; color: #1F2328;"><option>Board · fits 12</option></select></div>
+      <div style="display: flex; flex-direction: column; gap: 6px;"><label for="c-date">Date</label><input id="c-date" value="Tue 6 Oct 2026" style="height: 40px; padding: 0 12px; background: #FFFFFF; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 14px; color: #1F2328;"></div>
+      <div style="display: flex; flex-direction: column; gap: 6px;"><label for="c-start">Start</label><select id="c-start" style="height: 40px; padding: 0 12px; background: #FFFFFF; border: 1px solid #C2410C; border-radius: 6px; font-size: 14px; color: #1F2328; box-shadow: 0 0 0 3px rgba(194,65,12,.35);"><option>10:45</option></select></div>
+      <div style="display: flex; flex-direction: column; gap: 6px;"><label for="c-end">End</label><select id="c-end" style="height: 40px; padding: 0 12px; background: #FFFFFF; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 14px; color: #1F2328;"><option>11:30</option></select></div>
+      <div style="display: flex; flex-direction: column; gap: 6px;"><label for="c-att">People coming</label><div style="display: flex; height: 40px; border: 1px solid #C9C6BF; border-radius: 6px; overflow: hidden;"><button type="button" aria-label="Fewer people" style="width: 40px; background: #FFFFFF; border: 0; border-right: 1px solid #E3E1DC; font-size: 18px;">−</button><input id="c-att" value="8" style="flex-grow: 1; width: 40px; text-align: center; border: 0; font-size: 14px; color: #1F2328;"><button type="button" aria-label="More people" style="width: 40px; background: #FFFFFF; border: 0; border-left: 1px solid #E3E1DC; font-size: 18px;">+</button></div></div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;">
+      <div style="display: flex; flex-direction: column; gap: 6px;"><label for="c-err">People coming</label><input id="c-err" value="14" aria-invalid="true" style="height: 40px; padding: 0 12px; background: #FFFFFF; border: 1.5px solid #B91C1C; border-radius: 6px; font-size: 14px; color: #1F2328;"><span style="font-size: 12px; color: #B91C1C;">Board fits 12. Choose 12 or fewer.</span></div>
+      <div style="display: flex; flex-direction: column; gap: 6px;"><label for="c-end2">End</label><select id="c-end2" aria-invalid="true" style="height: 40px; padding: 0 12px; background: #FFFFFF; border: 1.5px solid #B91C1C; border-radius: 6px; font-size: 14px; color: #1F2328;"><option>15:15</option></select><span style="font-size: 12px; color: #B91C1C;">Meetings can be at most 4 hours.</span></div>
+      <div style="display: flex; flex-direction: column; gap: 6px;"><label for="c-dis">Room</label><input id="c-dis" value="Old Room · not in use" disabled style="height: 40px; padding: 0 12px; background: #EFEDE8; border: 1px solid #E3E1DC; border-radius: 6px; font-size: 14px; color: #8B9097;"><span style="font-size: 12px; color: #5B616B;">Rooms out of use can't be booked.</span></div>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px;">
+    <div style="display: flex; flex-direction: column; gap: 16px; padding: 24px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px; box-shadow: 0 1px 2px rgba(31,35,40,.06);">
+      <div style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B;">Capacity filter · segmented</div>
+      <div role="group" aria-label="Room must fit" style="display: inline-flex; align-self: flex-start; padding: 3px; background: #EFEDE8; border-radius: 999px; gap: 2px;">
+        <button type="button" style="height: 32px; padding: 0 14px; background: transparent; border: 0; border-radius: 999px; font-size: 13px; font-weight: 600; color: #5B616B;">Any size</button>
+        <button type="button" style="height: 32px; padding: 0 14px; background: transparent; border: 0; border-radius: 999px; font-size: 13px; font-weight: 600; color: #5B616B;">2+</button>
+        <button type="button" aria-pressed="true" style="height: 32px; padding: 0 14px; background: #FFFFFF; border: 0; border-radius: 999px; font-size: 13px; font-weight: 600; color: #1F2328; box-shadow: 0 1px 2px rgba(31,35,40,.12);">6+</button>
+        <button type="button" style="height: 32px; padding: 0 14px; background: transparent; border: 0; border-radius: 999px; font-size: 13px; font-weight: 600; color: #5B616B;">12+</button>
+      </div>
+      <div style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B; padding-top: 8px;">Filter chips · admin tables</div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <span style="display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 6px 0 12px; background: #1F2328; color: #FFFFFF; border-radius: 999px; font-size: 13px; font-weight: 500;">Room: Board <button type="button" aria-label="Remove room filter" style="width: 20px; height: 20px; background: transparent; border: 0; color: #FFFFFF; font-size: 14px;">×</button></span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 6px 0 12px; background: #1F2328; color: #FFFFFF; border-radius: 999px; font-size: 13px; font-weight: 500;">Status: No-show <button type="button" aria-label="Remove status filter" style="width: 20px; height: 20px; background: transparent; border: 0; color: #FFFFFF; font-size: 14px;">×</button></span>
+        <button type="button" style="height: 30px; padding: 0 12px; background: #FFFFFF; border: 1px dashed #C9C6BF; border-radius: 999px; font-size: 13px; font-weight: 500; color: #5B616B;">+ Person</button>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 16px; padding: 24px; background: #FFFFFF; border: 1px solid #E3E1DC; border-radius: 12px; box-shadow: 0 1px 2px rgba(31,35,40,.06);">
+      <div style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B616B;">Search, toggle, file</div>
+      <div style="display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 12px; background: #FFFFFF; border: 1px solid #C9C6BF; border-radius: 6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B616B" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg><input aria-label="Search people" placeholder="Search people by name or email" style="flex-grow: 1; border: 0; font-size: 14px; color: #1F2328;"></div>
+      <label style="display: flex; align-items: center; gap: 12px; font-weight: 500; font-size: 14px;"><span style="position: relative; width: 40px; height: 24px; background: #1F2328; border-radius: 999px;"><span style="position: absolute; top: 3px; left: 19px; width: 18px; height: 18px; background: #FFFFFF; border-radius: 999px;"></span></span>Room in use</label>
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px; border: 1.5px dashed #C9C6BF; border-radius: 8px; background: #F7F6F3;">
+        <div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 14px; font-weight: 600;">Upcoming-week bookings (.csv)</span><span style="font-size: 12px; color: #5B616B;">room, person_email, date, start, end, attendees</span></div>
+        <button type="button" style="height: 40px; padding: 0 16px; background: #FFFFFF; color: #1F2328; border: 1px solid #C9C6BF; border-radius: 6px; font-size: 14px; font-weight: 600;">Choose file</button>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+{
+  "v": 3,
+  "createdOnFiles": { "v": 1, "at": "2026-09-29T12:00:00Z" },
+  "title": "Meeting Room Booking — UI Designs",
+  "launch": { "view": "canvas", "page": "style-guide" },
+  "pages": [
+    { "id": "style-guide", "name": "Style Guide" },
+    { "id": "s01-entry", "name": "01 Entry" },
+    { "id": "s02-booking", "name": "02 Booking" },
+    { "id": "s03-admin", "name": "03 Admin" },
+    { "id": "s04-prototype", "name": "04 Prototype" }
+  ],
+  "boards": {
+    "Main.dc.html": { "x": 0, "y": 0, "w": 1280, "h": 960, "title": "Brand — palette, type, tokens", "page": "style-guide" },
+    "Status.dc.html": { "x": 1360, "y": 0, "w": 1280, "h": 960, "title": "Status — booking states and messages", "page": "style-guide" },
+    "Controls.dc.html": { "x": 0, "y": 1080, "w": 1280, "h": 1000, "title": "Controls — buttons, inputs, chips", "page": "style-guide" },
+    "Navigation.dc.html": { "x": 1360, "y": 1080, "w": 1280, "h": 1000, "title": "Navigation — navbar, tabs, user switch, date", "page": "style-guide" },
+    "Surfaces.dc.html": { "x": 0, "y": 2200, "w": 1440, "h": 1480, "title": "Surfaces — timeline board, table, drawer, states", "page": "style-guide" },
+    "S01-pick-user.dc.html": { "x": 0, "y": 0, "w": 1280, "h": 800, "title": "Pick a user — web", "page": "s01-entry" },
+    "S01-pick-user-mobile.dc.html": { "x": 1360, "y": 0, "w": 390, "h": 844, "title": "Pick a user — mobile", "page": "s01-entry" },
+    "S01-pick-user-states.dc.html": { "x": 0, "y": 964, "w": 1280, "h": 520, "title": "Pick a user — loading, no match, error", "page": "s01-entry" },
+    "S02-find-room.dc.html": { "x": 0, "y": 0, "w": 1440, "h": 900, "title": "Find a room — web (timeline board)", "page": "s02-booking" },
+    "S02-find-room-mobile.dc.html": { "x": 1520, "y": 0, "w": 390, "h": 844, "title": "Find a room — mobile (per-room day list)", "page": "s02-booking" },
+    "S02-book-drawer.dc.html": { "x": 0, "y": 1020, "w": 1440, "h": 900, "title": "Book a room — web drawer", "page": "s02-booking" },
+    "S02-edit-sheet-mobile.dc.html": { "x": 1520, "y": 1020, "w": 390, "h": 844, "title": "Edit booking — mobile sheet", "page": "s02-booking" },
+    "S02-my-bookings.dc.html": { "x": 0, "y": 2040, "w": 1440, "h": 900, "title": "My bookings — web", "page": "s02-booking" },
+    "S02-my-bookings-mobile.dc.html": { "x": 1520, "y": 2040, "w": 390, "h": 844, "title": "My bookings — mobile, check-in open (13:52)", "page": "s02-booking" },
+    "S02-states.dc.html": { "x": 0, "y": 3060, "w": 1440, "h": 760, "title": "Booking — loading, no fit, limit, conflict, no-show, late-cancel confirm", "page": "s02-booking" },
+    "S03-all-bookings.dc.html": { "x": 0, "y": 0, "w": 1440, "h": 900, "title": "All bookings — admin web", "page": "s03-admin" },
+    "S03-all-bookings-mobile.dc.html": { "x": 1520, "y": 0, "w": 390, "h": 844, "title": "All bookings — admin mobile", "page": "s03-admin" },
+    "S03-review.dc.html": { "x": 0, "y": 1020, "w": 1440, "h": 900, "title": "Review late cancellations and no-shows — web", "page": "s03-admin" },
+    "S03-review-mobile.dc.html": { "x": 1520, "y": 1020, "w": 390, "h": 844, "title": "Review — mobile", "page": "s03-admin" },
+    "S03-rooms.dc.html": { "x": 0, "y": 2040, "w": 1440, "h": 900, "title": "Rooms — web", "page": "s03-admin" },
+    "S03-rooms-mobile.dc.html": { "x": 1520, "y": 2040, "w": 390, "h": 844, "title": "Rooms — mobile", "page": "s03-admin" },
+    "S03-people.dc.html": { "x": 0, "y": 3060, "w": 1440, "h": 900, "title": "People — web", "page": "s03-admin" },
+    "S03-people-mobile.dc.html": { "x": 1520, "y": 3060, "w": 390, "h": 844, "title": "People — mobile", "page": "s03-admin" },
+    "S03-import.dc.html": { "x": 0, "y": 4080, "w": 1440, "h": 900, "title": "Import result — web", "page": "s03-admin" },
+    "S03-import-mobile.dc.html": { "x": 1520, "y": 4080, "w": 390, "h": 844, "title": "Import result — mobile", "page": "s03-admin" },
+    "S03-states.dc.html": { "x": 0, "y": 5100, "w": 1440, "h": 820, "title": "Admin — confirms, blocks, empty and loading states", "page": "s03-admin" },
+    "S03-admin-mobile.dc.html": { "x": 1520, "y": 5100, "w": 390, "h": 844, "title": "Admin hub — mobile", "page": "s03-admin" },
+    "Prototype.dc.html": { "x": 0, "y": 0, "w": 1440, "h": 960, "title": "Clickable prototype — pick, find, book, my bookings (web/mobile)", "page": "s04-prototype", "is_interactive": true }
+  },
+  "order": ["Main.dc.html", "Status.dc.html", "Controls.dc.html", "Navigation.dc.html", "Surfaces.dc.html", "S01-pick-user.dc.html", "S01-pick-user-mobile.dc.html", "S01-pick-user-states.dc.html", "S02-find-room.dc.html", "S02-find-room-mobile.dc.html", "S02-book-drawer.dc.html", "S02-edit-sheet-mobile.dc.html", "S02-my-bookings.dc.html", "S02-my-bookings-mobile.dc.html", "S02-states.dc.html", "S03-all-bookings.dc.html", "S03-all-bookings-mobile.dc.html", "S03-review.dc.html", "S03-review-mobile.dc.html", "S03-rooms.dc.html", "S03-rooms-mobile.dc.html", "S03-people.dc.html", "S03-people-mobile.dc.html", "S03-import.dc.html", "S03-import-mobile.dc.html", "S03-states.dc.html", "S03-admin-mobile.dc.html", "Prototype.dc.html"],
+  "notes": {
+    "sgtitle": { "x": 0, "y": -300, "text": "Style Guide — Meeting Room Booking", "kind": "title1", "maxW": 2640, "page": "style-guide" },
+    "s01title": { "x": 0, "y": -300, "text": "01 Entry — pick a user", "kind": "title1", "maxW": 1750, "page": "s01-entry" },
+    "s02title": { "x": 0, "y": -300, "text": "02 Booking — find, book, edit, my bookings", "kind": "title1", "maxW": 1910, "page": "s02-booking" },
+    "s03title": { "x": 0, "y": -300, "text": "03 Admin — bookings, review, rooms, people, import", "kind": "title1", "maxW": 1910, "page": "s03-admin" }
+  },
+  "designSystems": []
+}
